@@ -841,25 +841,29 @@
                 padding: 20px !important;
             }
         }
-        /* Minimal Scrollbar */
+        /* Minimal Scrollbar - Gold Accent */
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
+            height: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: transparent;
+            background: #1a1a1a;
         }
         ::-webkit-scrollbar-thumb {
-            background: #444;
-            border-radius: 3px;
+            background: linear-gradient(180deg, #c9a962 0%, #a08540 100%);
+            border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #666;
+            background: linear-gradient(180deg, #dfc07a 0%, #c9a962 100%);
+        }
+        ::-webkit-scrollbar-corner {
+            background: #1a1a1a;
         }
         
         /* Firefox */
         * {
             scrollbar-width: thin;
-            scrollbar-color: #444 transparent;
+            scrollbar-color: #c9a962 #1a1a1a;
         }
     </style>
 </head>
@@ -868,10 +872,12 @@
     <nav id="navbar">
         <a href="#" class="logo">e-blat<span>.com</span></a>
         <ul class="nav-links">
-            <li><a href="#technology">Tehnologie</a></li>
             <li><a href="#materials">Materiale</a></li>
+            <li><a href="#technology">Tehnologie</a></li>
+            <li><a href="#appliances">Electrocasnice</a></li>
             <li><a href="#about">Despre Noi</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="#faq">FAQ</a></li>
         </ul>
         <button class="mobile-menu-btn" onclick="toggleMenu()">
             <span></span>
@@ -1232,6 +1238,149 @@
                 <button type="submit" class="submit-btn" id="submitBtn">Solicită Ofertă</button>
                 <div id="formStatus" style="margin-top: 15px; text-align: center; font-size: 14px;"></div>
             </form>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" style="padding: 100px 5%; background: #0a0a0a;">
+        <div class="section-header">
+            <p class="section-label">Întrebări Frecvente</p>
+            <h2 class="section-title">Tot Ce Trebuie Să Știi</h2>
+            <p class="section-desc">Răspunsuri la cele mai comune întrebări despre tehnologia de inducție invizibilă CCT®.</p>
+        </div>
+        
+        <div style="max-width: 900px; margin: 0 auto;">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item" style="border-bottom: 1px solid #222;">
+                <button onclick="toggleFaq(this)" style="width: 100%; padding: 24px 0; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; text-align: left;">
+                    <span style="color: #fff; font-size: 16px; font-weight: 500; padding-right: 20px;">Pot folosi un electrocasnic în timp ce gătesc?</span>
+                    <span style="color: #c9a962; font-size: 24px; transition: transform 0.3s;">+</span>
+                </button>
+                <div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                    <p style="color: #888; padding: 0 0 24px 0; line-height: 1.7;">Da, datorită funcției duble, este posibil să folosești ambele funcții simultan, dar nu în aceeași zonă.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 2 -->
+            <div class="faq-item" style="border-bottom: 1px solid #222;">
+                <button onclick="toggleFaq(this)" style="width: 100%; padding: 24px 0; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; text-align: left;">
+                    <span style="color: #fff; font-size: 16px; font-weight: 500; padding-right: 20px;">Este sigur să folosesc electrocasnicele direct pe plită?</span>
+                    <span style="color: #c9a962; font-size: 24px; transition: transform 0.3s;">+</span>
+                </button>
+                <div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                    <p style="color: #888; padding: 0 0 24px 0; line-height: 1.7;">Da, este complet sigur. Software-ul plitei detectează dacă un aparat a fost pornit și apoi oprit. Există o măsură de siguranță: un aparat care este "pornit" când este plasat pe suprafață nu va porni până când nu este mai întâi oprit și apoi repornit.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 3 -->
+            <div class="faq-item" style="border-bottom: 1px solid #222;">
+                <button onclick="toggleFaq(this)" style="width: 100%; padding: 24px 0; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; text-align: left;">
+                    <span style="color: #fff; font-size: 16px; font-weight: 500; padding-right: 20px;">Pot folosi orice electrocasnic sau orice vase de gătit?</span>
+                    <span style="color: #c9a962; font-size: 24px; transition: transform 0.3s;">+</span>
+                </button>
+                <div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                    <p style="color: #888; padding: 0 0 24px 0; line-height: 1.7;">Pentru electrocasnice, trebuie folosite cele compatibile cu tehnologia CCT®. Pentru vase de gătit, poate fi folosit orice vas compatibil cu inducția, dar trebuie adăugat și accesoriul special pentru oprirea transferului de căldură către blat. Vasele care vin cu plita au piciorușe speciale care detașează fundul vasului de suprafața blatului.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 4 -->
+            <div class="faq-item" style="border-bottom: 1px solid #222;">
+                <button onclick="toggleFaq(this)" style="width: 100%; padding: 24px 0; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; text-align: left;">
+                    <span style="color: #fff; font-size: 16px; font-weight: 500; padding-right: 20px;">Toată suprafața poate găti sau transmite electricitate?</span>
+                    <span style="color: #c9a962; font-size: 24px; transition: transform 0.3s;">+</span>
+                </button>
+                <div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                    <p style="color: #888; padding: 0 0 24px 0; line-height: 1.7;">Nu, există zone specifice pe suprafață. Unele zone sunt capabile doar de gătit prin inducție, iar altele au funcție duală - pot și găti și transmite electricitate. Important este să plasezi fiecare element pe marcajele "+" care indică zonele.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 5 -->
+            <div class="faq-item" style="border-bottom: 1px solid #222;">
+                <button onclick="toggleFaq(this)" style="width: 100%; padding: 24px 0; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; text-align: left;">
+                    <span style="color: #fff; font-size: 16px; font-weight: 500; padding-right: 20px;">Suprafața se încălzește când gătesc?</span>
+                    <span style="color: #c9a962; font-size: 24px; transition: transform 0.3s;">+</span>
+                </button>
+                <div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                    <p style="color: #888; padding: 0 0 24px 0; line-height: 1.7;">Da, ca la orice plită cu inducție, suprafața se încălzește din contactul dintre tigaie/oală și sticlă, așa că este important să nu o atingi după procesul de gătit — dacă nu este folosit accesoriul pentru vase din comerț sau nu sunt folosite vasele de la producător.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 6 -->
+            <div class="faq-item" style="border-bottom: 1px solid #222;">
+                <button onclick="toggleFaq(this)" style="width: 100%; padding: 24px 0; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; text-align: left;">
+                    <span style="color: #fff; font-size: 16px; font-weight: 500; padding-right: 20px;">Pot pune un electrocasnic pe suprafața fierbinte?</span>
+                    <span style="color: #c9a962; font-size: 24px; transition: transform 0.3s;">+</span>
+                </button>
+                <div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                    <p style="color: #888; padding: 0 0 24px 0; line-height: 1.7;">Da, deoarece electrocasnicele au picioare de cauciuc rezistente la căldură. Totuși, recomandăm să aștepți 4-5 minute înainte de a plasa electrocasnicul.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 7 -->
+            <div class="faq-item" style="border-bottom: 1px solid #222;">
+                <button onclick="toggleFaq(this)" style="width: 100%; padding: 24px 0; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; text-align: left;">
+                    <span style="color: #fff; font-size: 16px; font-weight: 500; padding-right: 20px;">Are blocare de siguranță pentru copii?</span>
+                    <span style="color: #c9a962; font-size: 24px; transition: transform 0.3s;">+</span>
+                </button>
+                <div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                    <p style="color: #888; padding: 0 0 24px 0; line-height: 1.7;">Da, are blocare de siguranță pentru copii pentru securitate suplimentară.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 8 -->
+            <div class="faq-item" style="border-bottom: 1px solid #222;">
+                <button onclick="toggleFaq(this)" style="width: 100%; padding: 24px 0; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; text-align: left;">
+                    <span style="color: #fff; font-size: 16px; font-weight: 500; padding-right: 20px;">Există risc de electrocutare?</span>
+                    <span style="color: #c9a962; font-size: 24px; transition: transform 0.3s;">+</span>
+                </button>
+                <div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                    <p style="color: #888; padding: 0 0 24px 0; line-height: 1.7;">Absolut deloc. Sistemul este complet etanș și sigur. Transmisia de electricitate are loc doar dacă există contact între suprafețele emițătorului (plită) și receptorului (electrocasnic).</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 9 -->
+            <div class="faq-item" style="border-bottom: 1px solid #222;">
+                <button onclick="toggleFaq(this)" style="width: 100%; padding: 24px 0; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; text-align: left;">
+                    <span style="color: #fff; font-size: 16px; font-weight: 500; padding-right: 20px;">Cum se încarcă electrocasnicele?</span>
+                    <span style="color: #c9a962; font-size: 24px; transition: transform 0.3s;">+</span>
+                </button>
+                <div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                    <p style="color: #888; padding: 0 0 24px 0; line-height: 1.7;">Electrocasnicele nu se încarcă, deoarece nu au baterie. Plita transmite electricitate, iar electrocasnicul o primește și se activează instant.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 10 -->
+            <div class="faq-item" style="border-bottom: 1px solid #222;">
+                <button onclick="toggleFaq(this)" style="width: 100%; padding: 24px 0; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; text-align: left;">
+                    <span style="color: #fff; font-size: 16px; font-weight: 500; padding-right: 20px;">Pot încărca telefonul pe plită?</span>
+                    <span style="color: #c9a962; font-size: 24px; transition: transform 0.3s;">+</span>
+                </button>
+                <div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                    <p style="color: #888; padding: 0 0 24px 0; line-height: 1.7;">Nu, deoarece plita nu încarcă baterii. În plus, încărcătoarele de telefon funcționează la puteri diferite. Există în schimb accesoriu separat pentru încărcarea telefonului.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 11 -->
+            <div class="faq-item" style="border-bottom: 1px solid #222;">
+                <button onclick="toggleFaq(this)" style="width: 100%; padding: 24px 0; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; text-align: left;">
+                    <span style="color: #fff; font-size: 16px; font-weight: 500; padding-right: 20px;">Ce se întâmplă dacă am un stimulator cardiac (pacemaker)?</span>
+                    <span style="color: #c9a962; font-size: 24px; transition: transform 0.3s;">+</span>
+                </button>
+                <div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                    <p style="color: #888; padding: 0 0 24px 0; line-height: 1.7;">Utilizatorii cu stimulator cardiac implantat trebuie să mențină o distanță minimă de 30 cm față de zonele de gătit și transmisie de electricitate când produsul este în funcțiune.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 12 -->
+            <div class="faq-item" style="border-bottom: 1px solid #222;">
+                <button onclick="toggleFaq(this)" style="width: 100%; padding: 24px 0; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; text-align: left;">
+                    <span style="color: #fff; font-size: 16px; font-weight: 500; padding-right: 20px;">Ce se întâmplă dacă ridic electrocasnicul în timp ce funcționează și îl pun înapoi?</span>
+                    <span style="color: #c9a962; font-size: 24px; transition: transform 0.3s;">+</span>
+                </button>
+                <div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                    <p style="color: #888; padding: 0 0 24px 0; line-height: 1.7;">Nu va porni automat, deoarece plita va detecta o eroare în comunicarea cu electrocasnicul și acesta va fi dezactivat pentru siguranță.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1817,6 +1966,29 @@
         window.closeMaterialModal = function() {
             document.getElementById('materialModal').style.display = 'none';
             document.body.style.overflow = 'auto';
+        };
+
+        // FAQ Toggle
+        window.toggleFaq = function(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('span:last-child');
+            const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-item > div:last-child').forEach(el => {
+                el.style.maxHeight = '0px';
+            });
+            document.querySelectorAll('.faq-item button span:last-child').forEach(el => {
+                el.textContent = '+';
+                el.style.transform = 'rotate(0deg)';
+            });
+            
+            // Toggle current
+            if (!isOpen) {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.textContent = '−';
+                icon.style.transform = 'rotate(180deg)';
+            }
         };
 
         // Image Lightbox
