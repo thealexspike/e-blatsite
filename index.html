@@ -1056,6 +1056,25 @@
             <p style="text-align: center; color: #666; font-size: 14px; margin-top: 16px;">Vezi tehnologia în acțiune</p>
         </div>
     </section>
+    
+    <!-- Interactive Demo Section -->
+    <section style="padding: 60px 0 80px; background: #000;">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+            <div style="position: relative; border-radius: 12px; overflow: hidden; cursor: pointer;" 
+                 onmouseenter="this.querySelector('.hover-img').style.opacity='1'; this.querySelector('.hint').style.opacity='0';" 
+                 onmouseleave="this.querySelector('.hover-img').style.opacity='0'; this.querySelector('.hint').style.opacity='1';">
+                <!-- Base image (empty countertop) -->
+                <img src="assets/Grafica_sistem_inductie_-_non_hover.jpg" alt="Blat cu inducție invizibilă" style="width: 100%; height: auto; display: block;">
+                <!-- Hover image (with appliances) -->
+                <img class="hover-img" src="assets/Grafica_sistem_inductie_-_hover.jpg" alt="Electrocasnice pe blat" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s ease;">
+                <!-- Hint text -->
+                <div class="hint" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.7); padding: 10px 24px; border-radius: 30px; border: 1px solid #c9a962; transition: opacity 0.3s ease;">
+                    <span style="color: #c9a962; font-size: 13px; letter-spacing: 1px;">✨ Treci cu mouse-ul pentru a vedea electrocasnicele</span>
+                </div>
+            </div>
+            <p style="text-align: center; color: #666; font-size: 14px; margin-top: 16px;">Suprafață curată, fără cabluri — electrocasnicele apar doar când ai nevoie de ele</p>
+        </div>
+    </section>
 
     <!-- Appliances Section -->
     <section id="appliances" class="appliances-section" style="padding: 100px 5%; background: linear-gradient(180deg, #0a0a0a 0%, #111 100%);">
