@@ -923,12 +923,13 @@
         </div>
         
         <div class="materials-grid">
-            <div class="material-card" onclick="openMaterialCatalog('neolith')" style="cursor:pointer;">
-                <div class="material-bg" style="background-image: url('assets/Neolith_AMAZONICO-A-01_resize_-vertical.jpg');"></div>
+            <div class="material-card" id="neolithCard" onclick="openMaterialCatalog('neolith')" style="cursor:pointer;">
+                <div class="material-bg neolith-slideshow" style="background-image: url('assets/Neolith_AMAZONICO-A-01_resize_-vertical.jpg');"></div>
                 <div class="material-content">
                     <h4>Ceramică - Neolith</h4>
-                    <p>Plăci ceramice sinterizate de înaltă performanță</p>
+                    <p id="neolithModelName">Amazonico</p>
                 </div>
+                <div style="position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px;" id="neolithDots"></div>
             </div>
             <div class="material-card" onclick="openMaterialCatalog('quartz')" style="cursor:pointer;">
                 <div class="material-bg" style="background: linear-gradient(135deg, #e8e4dd 0%, #d4cfc5 50%, #c9c4ba 100%);"></div>
@@ -1736,6 +1737,55 @@
                 }
             }
         })();
+
+        // Neolith Card Slideshow
+        const neolithSlides = [
+            { texture: 'assets/Neolith_AMAZONICO-A-01_resize_-vertical.jpg', name: 'Amazonico' },
+            { texture: 'assets/Neolith_Calacatta_Gold.jpg', name: 'Calacatta Gold' }
+        ];
+        let currentNeolithSlide = 0;
+
+        function initNeolithSlideshow() {
+            const dotsContainer = document.getElementById('neolithDots');
+            if (!dotsContainer) return;
+            
+            // Create dots
+            neolithSlides.forEach((_, i) => {
+                const dot = document.createElement('div');
+                dot.style.cssText = `width: 8px; height: 8px; border-radius: 50%; background: ${i === 0 ? '#c9a962' : 'rgba(255,255,255,0.4)'}; transition: background 0.3s; cursor: pointer;`;
+                dot.onclick = (e) => { e.stopPropagation(); goToNeolithSlide(i); };
+                dotsContainer.appendChild(dot);
+            });
+            
+            // Auto-advance every 4 seconds
+            setInterval(() => {
+                currentNeolithSlide = (currentNeolithSlide + 1) % neolithSlides.length;
+                updateNeolithSlide();
+            }, 4000);
+        }
+
+        function goToNeolithSlide(index) {
+            currentNeolithSlide = index;
+            updateNeolithSlide();
+        }
+
+        function updateNeolithSlide() {
+            const bg = document.querySelector('.neolith-slideshow');
+            const nameEl = document.getElementById('neolithModelName');
+            const dots = document.querySelectorAll('#neolithDots > div');
+            
+            if (bg && nameEl) {
+                bg.style.backgroundImage = `url('${neolithSlides[currentNeolithSlide].texture}')`;
+                nameEl.textContent = neolithSlides[currentNeolithSlide].name;
+            }
+            
+            dots.forEach((dot, i) => {
+                dot.style.background = i === currentNeolithSlide ? '#c9a962' : 'rgba(255,255,255,0.4)';
+            });
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', initNeolithSlideshow);
 
         // Material Modal Functions - defined first so onclick can use them
         
