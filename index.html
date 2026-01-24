@@ -923,13 +923,14 @@
         </div>
         
         <div class="materials-grid">
-            <div class="material-card" id="neolithCard" onclick="openMaterialCatalog('neolith')" style="cursor:pointer;">
-                <div class="material-bg neolith-slideshow" style="background-image: url('assets/Neolith_AMAZONICO-A-01_resize_-vertical.jpg');"></div>
-                <div class="material-content">
+            <div class="material-card" id="neolithCard" onclick="openMaterialCatalog('neolith')" style="cursor:pointer; position: relative;">
+                <div class="material-bg neolith-slide" id="neolithSlide1" style="background-image: url('assets/Neolith_AMAZONICO-A-01_resize_-vertical.jpg'); opacity: 1; transition: opacity 1s ease-in-out; z-index: 0;"></div>
+                <div class="material-bg neolith-slide" id="neolithSlide2" style="background-image: url('assets/Neolith_Calacatta_Gold.jpg'); opacity: 0; transition: opacity 1s ease-in-out; z-index: 0;"></div>
+                <div class="material-content" style="z-index: 2;">
                     <h4>Ceramică - Neolith</h4>
-                    <p id="neolithModelName" style="transition: opacity 0.4s ease;">Amazonico</p>
+                    <p id="neolithModelName" style="transition: opacity 0.5s ease-in-out;">Amazonico</p>
+                    <div style="display: flex; gap: 8px; margin-top: 10px;" id="neolithDots"></div>
                 </div>
-                <div style="position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px;" id="neolithDots"></div>
             </div>
             <div class="material-card" onclick="openMaterialCatalog('quartz')" style="cursor:pointer;">
                 <div class="material-bg" style="background: linear-gradient(135deg, #e8e4dd 0%, #d4cfc5 50%, #c9c4ba 100%);"></div>
@@ -1738,10 +1739,10 @@
             }
         })();
 
-        // Neolith Card Slideshow
+        // Neolith Card Slideshow - Crossfade
         const neolithSlides = [
-            { texture: 'assets/Neolith_AMAZONICO-A-01_resize_-vertical.jpg', name: 'Amazonico' },
-            { texture: 'assets/Neolith_Calacatta_Gold.jpg', name: 'Calacatta Gold' }
+            { name: 'Amazonico' },
+            { name: 'Calacatta Gold' }
         ];
         let currentNeolithSlide = 0;
 
@@ -1770,24 +1771,29 @@
         }
 
         function updateNeolithSlide() {
-            const bg = document.querySelector('.neolith-slideshow');
+            const slide1 = document.getElementById('neolithSlide1');
+            const slide2 = document.getElementById('neolithSlide2');
             const nameEl = document.getElementById('neolithModelName');
             const dots = document.querySelectorAll('#neolithDots > div');
             
-            if (bg && nameEl) {
-                // Fade out
-                bg.style.opacity = '0';
-                nameEl.style.opacity = '0';
+            console.log('Switching to slide:', currentNeolithSlide);
+            
+            if (slide1 && slide2 && nameEl) {
+                // Crossfade between slides
+                if (currentNeolithSlide === 0) {
+                    slide1.style.opacity = '1';
+                    slide2.style.opacity = '0';
+                } else {
+                    slide1.style.opacity = '0';
+                    slide2.style.opacity = '1';
+                }
                 
-                // Change content after fade out
+                // Update name with fade
+                nameEl.style.opacity = '0';
                 setTimeout(() => {
-                    bg.style.backgroundImage = `url('${neolithSlides[currentNeolithSlide].texture}')`;
                     nameEl.textContent = neolithSlides[currentNeolithSlide].name;
-                    
-                    // Fade in
-                    bg.style.opacity = '1';
                     nameEl.style.opacity = '1';
-                }, 400);
+                }, 300);
             }
             
             dots.forEach((dot, i) => {
