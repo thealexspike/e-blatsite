@@ -1,0 +1,2047 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-blat.com | Blaturi Premium cu Inducție Integrată</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-section: #111111;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #c9a962;
+            --accent-hover: #dfc07a;
+            --border: #2a2a2a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0) 100%);
+            transition: background 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(10,10,10,0.98);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                linear-gradient(135deg, rgba(10,10,10,0.7) 0%, rgba(10,10,10,0.4) 50%, rgba(10,10,10,0.7) 100%),
+                url('assets/c01.JPG');
+            background-size: cover;
+            background-position: center;
+            transform: scale(1.05);
+            animation: heroZoom 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroZoom {
+            0% { transform: scale(1.05); }
+            100% { transform: scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero-tagline {
+            font-size: 0.75rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.7s forwards;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 3rem;
+            background: var(--accent);
+            color: var(--bg-dark);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.9s forwards;
+        }
+
+        .hero-cta:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(201, 169, 98, 0.3);
+        }
+
+        .hero-cta svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(5px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            width: fit-content;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.2s forwards;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 8rem 4rem;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            font-weight: 300;
+            font-size: 1rem;
+        }
+
+        /* Technology Section */
+        .tech-section {
+            background: var(--bg-section);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .tech-image {
+            position: relative;
+            aspect-ratio: 16/10;
+            overflow: hidden;
+        }
+
+        .tech-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .tech-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .tech-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .tech-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tech-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .tech-feature-icon {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .tech-feature-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent);
+        }
+
+        .tech-feature h4 {
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+
+        .tech-feature p {
+            font-size: 0.8rem;
+            margin: 0;
+        }
+
+        /* How It Works */
+        .how-section {
+            background: var(--bg-dark);
+        }
+
+        .how-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .how-step {
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+        }
+
+        .how-step:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .how-step h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .how-step p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        /* Materials Section */
+        .materials-section {
+            background: var(--bg-section);
+        }
+
+        .materials-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .material-card {
+            position: relative;
+            width: 300px;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .material-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.3) 50%, rgba(10,10,10,0.1) 100%);
+            z-index: 1;
+            transition: opacity 0.4s ease;
+        }
+
+        .material-card:hover::before {
+            opacity: 0.7;
+        }
+
+        .material-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s ease;
+        }
+
+        .material-card:hover .material-bg {
+            transform: scale(1.1);
+        }
+
+        .material-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            z-index: 2;
+        }
+
+        .material-content h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .material-content p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        /* Ceramic textures */
+        .material-ceramic .material-bg {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #2a2a2a 100%);
+        }
+
+        .material-quartz .material-bg {
+            background: linear-gradient(135deg, #3a3a3a 0%, #252525 50%, #3a3a3a 100%);
+        }
+
+        .material-composite .material-bg {
+            background: linear-gradient(135deg, #4a4a4a 0%, #2a2a2a 50%, #4a4a4a 100%);
+        }
+
+        .material-neolith .material-bg {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 50%, #1a1a1a 100%);
+        }
+
+        /* About Section */
+        .about-section {
+            background: var(--bg-dark);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .stat-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .about-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .dealer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            background: rgba(201, 169, 98, 0.1);
+            border: 1px solid var(--accent);
+            margin-top: 1rem;
+        }
+
+        .dealer-badge svg {
+            width: 24px;
+            height: 24px;
+            color: var(--accent);
+        }
+
+        .dealer-badge span {
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--bg-section);
+        }
+
+        .contact-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .contact-item p {
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        .contact-item a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group .file-input {
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px dashed rgba(201, 169, 98, 0.4);
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .form-group .file-input::-webkit-file-upload-button {
+            background: var(--accent);
+            color: var(--bg-dark);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            padding: 1.2rem 3rem;
+            background: var(--accent);
+            color: var(--bg-dark);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 4rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+        }
+
+        .footer-logo span {
+            color: var(--accent);
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-social a {
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: var(--accent);
+        }
+
+        .footer-social svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            section {
+                padding: 5rem 2rem;
+            }
+
+            nav {
+                padding: 1.5rem 2rem;
+            }
+
+            .tech-grid,
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .materials-grid {
+                justify-content: center;
+            }
+
+            .how-steps {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-dark);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .materials-grid {
+                justify-content: center;
+            }
+            
+            .material-card {
+                width: 280px;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-features {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            /* Material Modal Responsive */
+            #materialModal > div {
+                flex-direction: column !important;
+                max-height: 95vh !important;
+            }
+            #materialModal #modelsList {
+                width: 100% !important;
+                max-height: 200px !important;
+                border-right: none !important;
+                border-bottom: 1px solid #222;
+                display: flex !important;
+                flex-direction: row !important;
+                overflow-x: auto !important;
+                overflow-y: hidden !important;
+            }
+            #materialModal #modelsList > div {
+                flex-shrink: 0 !important;
+                min-width: 200px !important;
+            }
+            #materialModal #modelDetails {
+                padding: 20px !important;
+            }
+        }
+        /* Minimal Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #444;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #666;
+        }
+        
+        /* Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #444 transparent;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">e-blat<span>.com</span></a>
+        <ul class="nav-links">
+            <li><a href="#technology">Tehnologie</a></li>
+            <li><a href="#materials">Materiale</a></li>
+            <li><a href="#about">Despre Noi</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <p class="hero-tagline">Viitorul bucătăriei tale</p>
+            <h1 class="hero-title">Blaturi Premium cu<br>Inducție Invizibilă</h1>
+            <p class="hero-subtitle">Ceramică de înaltă calitate pentru bucătării moderne. O soluție integrată pentru blaturi premium cu inducție invizibilă, fără compromisuri.</p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                <a href="https://configurator.e-blat.com" class="hero-cta">
+                    Configurează Blatul Tău
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="#contact" class="hero-cta" style="background: transparent; border: 1px solid var(--accent); color: var(--accent);">
+                    Cere Ofertă
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Descoperă</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Materials Section -->
+    <section id="materials" class="materials-section">
+        <div class="section-header">
+            <p class="section-label">Materiale Premium</p>
+            <h2 class="section-title">Suprafețe de Excepție</h2>
+            <p class="section-desc">Lucrăm doar cu materiale de top, alese pentru durabilitate, estetică și compatibilitate perfectă cu tehnologia de inducție invizibilă.</p>
+        </div>
+        
+        <div class="materials-grid">
+            <div class="material-card" onclick="openMaterialCatalog('neolith')" style="cursor:pointer;">
+                <div class="material-bg" style="background-image: url('assets/Neolith_AMAZONICO-A-01_resize_-vertical.jpg');"></div>
+                <div class="material-content">
+                    <h4>Ceramică - Neolith</h4>
+                    <p>Plăci ceramice sinterizate de înaltă performanță</p>
+                </div>
+            </div>
+            <div class="material-card" onclick="openMaterialCatalog('quartz')" style="cursor:pointer;">
+                <div class="material-bg" style="background: linear-gradient(135deg, #e8e4dd 0%, #d4cfc5 50%, #c9c4ba 100%);"></div>
+                <div class="material-content">
+                    <h4>Quartz</h4>
+                    <p>Suprafețe din cuarț natural reconstituit</p>
+                </div>
+            </div>
+            <div class="material-card" onclick="openMaterialCatalog('composite')" style="cursor:pointer;">
+                <div class="material-bg" style="background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #333 100%);"></div>
+                <div class="material-content">
+                    <h4>Compozit</h4>
+                    <p>Materiale compozite durabile și versatile</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how" class="how-section">
+        <div class="section-header">
+            <p class="section-label">Proces Simplu</p>
+            <h2 class="section-title">Cum Funcționează</h2>
+            <p class="section-desc">De la concept la bucătăria ta, în trei pași simpli.</p>
+        </div>
+        
+        <div class="how-steps">
+            <div class="how-step">
+                <div class="step-number">01</div>
+                <h4>Configurare</h4>
+                <p>Alegi dimensiunile, materialul și numărul de zone de gătit. Te ajutăm să găsești soluția perfectă pentru spațiul tău.</p>
+            </div>
+            <div class="how-step">
+                <div class="step-number">02</div>
+                <h4>Producție</h4>
+                <p>Blatul este fabricat la comandă din materialele premium alese. Sistemul de inducție este pregătit pentru integrare.</p>
+            </div>
+            <div class="how-step">
+                <div class="step-number">03</div>
+                <h4>Instalare</h4>
+                <p>Echipa noastră montează blatul și sistemul de inducție. Configurăm totul și îți explicăm funcționarea.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="tech-section">
+        <div class="section-header">
+            <p class="section-label">Tehnologie de Ultimă Generație</p>
+            <h2 class="section-title">Inducție Ascunsă Sub Blat</h2>
+            <p class="section-desc">Gătești direct pe blat, fără plită vizibilă. Electrocasnicele funcționează wireless, fără cabluri. Magie? Nu, doar tehnologie de ultimă generație.</p>
+        </div>
+        
+        <div class="tech-grid">
+            <div class="tech-image">
+                <img src="https://www.cloencordlesstechnology.com/wp-content/uploads/2023/01/Explosionado_72ppp_Mesa-de-trabajo-1-copia-2-1-1024x576.png" alt="Sistem de inducție invizibil">
+            </div>
+            <div class="tech-content">
+                <h3>Sistem Dual de Gătit și Alimentare</h3>
+                <p>Plita de inducție se montează sub blatul ceramic, oferind două funcții distincte: gătit prin inducție și transmitere de energie electrică wireless către electrocasnicele compatibile.</p>
+                <p>Rezultatul? O bucătărie complet curată, fără cabluri, fără plită vizibilă — doar suprafața elegantă a blatului tău ceramic.</p>
+                
+                <div class="tech-features">
+                    <div class="tech-feature">
+                        <div class="tech-feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Fără Cabluri</h4>
+                            <p>Electrocasnice wireless direct pe blat</p>
+                        </div>
+                    </div>
+                    <div class="tech-feature">
+                        <div class="tech-feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>100% Sigur</h4>
+                            <p>Transfer energie doar la contact</p>
+                        </div>
+                    </div>
+                    <div class="tech-feature">
+                        <div class="tech-feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Eficiență Maximă</h4>
+                            <p>Mai rapid decât plitele tradiționale</p>
+                        </div>
+                    </div>
+                    <div class="tech-feature">
+                        <div class="tech-feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <path d="M3 9h18M9 21V9"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Design Minimalist</h4>
+                            <p>Integrare perfectă în orice stil</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Video Section -->
+        <div style="max-width: 900px; margin: 60px auto 0; padding: 0 20px;">
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 1px solid #2a2a2a; box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
+                <iframe 
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                    src="https://www.youtube.com/embed/GUykRbCKpAY?rel=0&modestbranding=1" 
+                    title="Tehnologie Inducție Invizibilă"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <p style="text-align: center; color: #666; font-size: 14px; margin-top: 16px;">Vezi tehnologia în acțiune</p>
+        </div>
+    </section>
+
+    <!-- Appliances Section -->
+    <section id="appliances" class="appliances-section" style="padding: 100px 5%; background: linear-gradient(180deg, #0a0a0a 0%, #111 100%);">
+        <div class="section-header">
+            <span class="section-subtitle" style="color: #c9a962; text-transform: uppercase; letter-spacing: 3px; font-size: 12px;">Electrocasnice Wireless</span>
+            <h2 class="section-title" style="font-size: 2.5rem; margin-top: 1rem; color: #fff;">Fără Baterii, Fără Cabluri</h2>
+            <p style="color: #888; max-width: 600px; margin: 1rem auto 0; line-height: 1.6;">Tehnologie revoluționară care alimentează electrocasnicele direct prin blatul de bucătărie. Design premium, funcționalitate de top.</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 1000px; margin: 60px auto 0;">
+            <!-- Toaster Card -->
+            <div onclick="openApplianceModal('toaster')" style="cursor: pointer; background: #1a1a1a; border-radius: 16px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; border: 1px solid #222; display: flex; flex-direction: column;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 40px rgba(201,169,98,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                <div style="height: 250px; overflow: hidden;">
+                    <img src="assets/BeCordlessTech-2026_16.jpg" alt="Cordless Toaster" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 24px; flex: 1; display: flex; flex-direction: column;">
+                    <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 26px; color: #fff; margin-bottom: 8px;">Cordless <em>Toaster</em><span style="color: #c9a962;">.</span></h3>
+                    <p style="color: #888; font-size: 14px; line-height: 1.5; flex: 1;">Un clasic reinventat. Prăjitor wireless cu sloturi extra-largi și design personalizabil.</p>
+                    <span style="display: inline-block; margin-top: 16px; color: #c9a962; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Vezi detalii →</span>
+                </div>
+            </div>
+
+            <!-- Kettle Card -->
+            <div onclick="openApplianceModal('kettle')" style="cursor: pointer; background: #1a1a1a; border-radius: 16px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; border: 1px solid #222; display: flex; flex-direction: column;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 40px rgba(201,169,98,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                <div style="height: 250px; overflow: hidden;">
+                    <img src="assets/BeCordlessTech-2026_21.jpg" alt="Cordless Kettle" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 24px; flex: 1; display: flex; flex-direction: column;">
+                    <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 26px; color: #fff; margin-bottom: 8px;">Cordless <em>Kettle</em><span style="color: #c9a962;">.</span></h3>
+                    <p style="color: #888; font-size: 14px; line-height: 1.5; flex: 1;">Fierbător electric avansat cu control temperatură și design carafă elegant.</p>
+                    <span style="display: inline-block; margin-top: 16px; color: #c9a962; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Vezi detalii →</span>
+                </div>
+            </div>
+
+            <!-- Air Fryer Card -->
+            <div onclick="openApplianceModal('airfryer')" style="cursor: pointer; background: #1a1a1a; border-radius: 16px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; border: 1px solid #222; display: flex; flex-direction: column;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 40px rgba(201,169,98,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                <div style="height: 250px; overflow: hidden;">
+                    <img src="assets/BeCordlessTech-2026_26.jpg" alt="Cordless Air Fryer" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 24px; flex: 1; display: flex; flex-direction: column;">
+                    <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 26px; color: #fff; margin-bottom: 8px;">Cordless <em>Air Fryer</em><span style="color: #c9a962;">.</span></h3>
+                    <p style="color: #888; font-size: 14px; line-height: 1.5; flex: 1;">Experiența culinară supremă. Capacitate 6L, interfață intuitivă și mâncare sănătoasă.</p>
+                    <span style="display: inline-block; margin-top: 16px; color: #c9a962; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Vezi detalii →</span>
+                </div>
+            </div>
+
+            <!-- Blender Card -->
+            <div onclick="openApplianceModal('blender')" style="cursor: pointer; background: #1a1a1a; border-radius: 16px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; border: 1px solid #222; display: flex; flex-direction: column;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 40px rgba(201,169,98,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                <div style="height: 250px; overflow: hidden;">
+                    <img src="assets/BeCordlessTech-2026_32.jpg" alt="Cordless Table Blender" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 24px; flex: 1; display: flex; flex-direction: column;">
+                    <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 26px; color: #fff; margin-bottom: 8px;">Cordless <em>Blender</em><span style="color: #c9a962;">.</span></h3>
+                    <p style="color: #888; font-size: 14px; line-height: 1.5; flex: 1;">Blender de masă puternic, estetic și fără efort. Capac din lemn natural.</p>
+                    <span style="display: inline-block; margin-top: 16px; color: #c9a962; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Vezi detalii →</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="about-grid">
+            <div class="about-stats">
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Ani Experiență</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Proiecte Finalizate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Clienți Mulțumiți</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">RO</div>
+                    <div class="stat-label">Livrare Națională</div>
+                </div>
+            </div>
+            
+            <div class="about-content">
+                <h3>Măiestrie și Inovație</h3>
+                <p>Cu peste un deceniu de experiență în mobilier la comandă, am decis să aducem în România cea mai avansată tehnologie pentru bucătării: sistemul de inducție invizibilă integrat în blaturi ceramice premium.</p>
+                <p>Combinăm expertiza noastră în tâmplărie cu materiale premium și tehnologie de ultimă generație pentru a crea bucătării care nu sunt doar frumoase, ci și inteligente.</p>
+                <p>Sediul nostru este în București, dar livrăm și instalăm în toată România.</p>
+                
+                <div class="dealer-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    <span>Specialist în Blaturi Premium</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="section-header">
+            <p class="section-label">Hai să Vorbim</p>
+            <h2 class="section-title">Contactează-ne</h2>
+            <p class="section-desc">Suntem aici să răspundem la orice întrebare și să te ajutăm să îți configurezi bucătăria visurilor tale.</p>
+        </div>
+        
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h3>Informații Contact</h3>
+                
+                <div class="contact-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    <p>Intrarea Roma 3, București<br>Servicii în toată țara</p>
+                </div>
+                
+                <div class="contact-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    <p>
+                        <a href="tel:+40744705911">+40 744 705 911</a>
+                        <a href="https://wa.me/40744705911" target="_blank" style="margin-left: 12px; display: inline-flex; align-items: center; gap: 6px; background: #25D366; color: #fff; padding: 6px 12px; border-radius: 20px; font-size: 12px; text-decoration: none;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </p>
+                </div>
+                
+                <div class="contact-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    <p><a href="mailto:contact@e-blat.com" data-cfasync="false">contact@e-blat.com</a></p>
+                </div>
+                
+                <div class="contact-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    <p>Luni - Vineri: 10:00 - 17:00</p>
+                </div>
+            </div>
+            
+            <form class="contact-form" id="offerForm" action="https://e-blatform.alecsandru-gosav.workers.dev" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">Nume *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefon *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Descrieți proiectul dvs. *</label>
+                    <textarea id="message" name="message" required placeholder="Descrieți dimensiunile dorite, tipul de material, etc."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="files">Atașați fișiere (PDF, poze - max 10MB) - Proiect tehnic mobilier și poze locație</label>
+                    <input type="file" id="files" name="files" multiple accept=".pdf,.jpg,.jpeg,.png,.gif,.webp,.heic" class="file-input">
+                    <small style="color: #888; font-size: 11px; margin-top: 6px; display: block;">Acceptăm: PDF, JPG, PNG, GIF, WEBP</small>
+                </div>
+                <div id="fileList" style="margin-bottom: 15px; font-size: 12px; color: #c9a962;"></div>
+                <div class="form-group" style="flex-direction: row; align-items: flex-start; gap: 10px;">
+                    <input type="checkbox" id="gdprConsent" name="gdprConsent" required style="width: 18px; height: 18px; margin-top: 2px; accent-color: #c9a962; cursor: pointer;">
+                    <label for="gdprConsent" style="font-size: 13px; text-transform: none; letter-spacing: 0; color: #aaa; cursor: pointer;">
+                        Sunt de acord cu prelucrarea datelor personale și cu <a href="#" onclick="document.getElementById('privacyModal').style.display='flex'; return false;" style="color: #c9a962; text-decoration: underline;">Politica de Confidențialitate</a>
+                    </label>
+                </div>
+                <button type="submit" class="submit-btn" id="submitBtn">Solicită Ofertă</button>
+                <div id="formStatus" style="margin-top: 15px; text-align: center; font-size: 14px;"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">e-blat<span>.com</span></div>
+        <p class="footer-text">© 2026 e-blat.com. Toate drepturile rezervate.</p>
+        <div class="footer-social">
+            <a href="#" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+            </a>
+            <a href="#" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                    <rect x="2" y="9" width="4" height="12"/>
+                    <circle cx="4" cy="4" r="2"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Material Catalog Modal -->
+    <div id="materialModal" onclick="if(event.target===this)closeMaterialModal()" style="
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.95);
+        z-index: 10000;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    ">
+        <div style="
+            background: #0d0d0d;
+            border: 1px solid #2a2a2a;
+            border-radius: 16px;
+            max-width: 1200px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        ">
+            <!-- Modal Header -->
+            <div style="padding: 24px 32px; border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+                <div>
+                    <h2 id="modalTitle" style="color: #fff; font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 400; margin: 0;">Ceramică - Neolith</h2>
+                    <p id="modalDescription" style="color: #888; font-size: 14px; margin: 8px 0 0 0;">Plăci ceramice sinterizate de înaltă performanță</p>
+                </div>
+                <button onclick="closeMaterialModal()" style="background: none; border: none; color: #888; font-size: 32px; cursor: pointer; line-height: 1;">×</button>
+            </div>
+            
+            <!-- Modal Content -->
+            <div style="display: flex; flex: 1; overflow: hidden;">
+                <!-- Left: Models List -->
+                <div id="modelsList" style="width: 280px; border-right: 1px solid #222; overflow-y: auto; flex-shrink: 0; background: #111;">
+                    <!-- Models will be populated by JS -->
+                </div>
+                
+                <!-- Right: Selected Model Details -->
+                <div id="modelDetails" style="flex: 1; overflow-y: auto; padding: 32px;">
+                    <p style="color: #666; text-align: center; padding: 60px 20px;">Selectează un model din stânga</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" onclick="if(event.target===this)document.getElementById('successModal').style.display='none';" style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.9);
+        z-index: 10000;
+        justify-content: center;
+        align-items: center;
+    ">
+        <div style="
+            background: #111;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            text-align: center;
+        ">
+            <button onclick="document.getElementById('successModal').style.display='none'" style="
+                position: absolute;
+                top: 16px;
+                right: 16px;
+                background: none;
+                border: none;
+                color: #888;
+                font-size: 28px;
+                cursor: pointer;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            ">×</button>
+            <div style="padding: 50px 40px;">
+                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #c9a962 0%, #b8954f 100%); border-radius: 50%; margin: 0 auto 24px; display: flex; align-items: center; justify-content: center;">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                </div>
+                <h2 style="color: #ffffff; margin-bottom: 16px; font-family: 'Montserrat', sans-serif; font-size: 24px;">Mulțumim!</h2>
+                <p style="color: #aaa; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">Cererea ta a fost trimisă cu succes.<br>Te vom contacta în cel mai scurt timp posibil.</p>
+                <button onclick="document.getElementById('successModal').style.display='none'" style="
+                    background: linear-gradient(135deg, #c9a962 0%, #b8954f 100%);
+                    color: #0a0a0a;
+                    border: none;
+                    padding: 14px 40px;
+                    font-size: 14px;
+                    font-weight: 600;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-family: 'Montserrat', sans-serif;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                ">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Appliance Modal -->
+    <div id="applianceModal" onclick="if(event.target===this)closeApplianceModal()" style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.95);
+        z-index: 10000;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    ">
+        <div style="
+            background: #111;
+            border: 1px solid #2a2a2a;
+            border-radius: 16px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        ">
+            <button onclick="closeApplianceModal()" style="
+                position: sticky;
+                top: 16px;
+                float: right;
+                margin: 16px;
+                background: none;
+                border: none;
+                color: #888;
+                font-size: 32px;
+                cursor: pointer;
+                z-index: 10;
+            ">×</button>
+            
+            <div style="padding: 40px;">
+                <h2 id="applianceTitle" style="font-family: 'Playfair Display', Georgia, serif; font-size: 32px; color: #fff; margin-bottom: 24px;"></h2>
+                
+                <!-- Image Gallery -->
+                <div id="applianceGallery" style="margin-bottom: 32px;">
+                    <div id="mainImage" style="width: 100%; border-radius: 12px; overflow: hidden; margin-bottom: 16px; background: #1a1a1a;">
+                        <img id="applianceMainImg" src="" style="width: 100%; height: auto; display: block;">
+                    </div>
+                    <div id="thumbnails" style="display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px;"></div>
+                </div>
+                
+                <!-- Description -->
+                <div id="applianceDescription" style="color: #ccc; font-size: 15px; line-height: 1.8; margin-bottom: 32px;"></div>
+                
+                <!-- Specs -->
+                <div style="background: #1a1a1a; border-radius: 12px; padding: 24px;">
+                    <h3 style="color: #c9a962; font-size: 16px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">Specificații Tehnice</h3>
+                    <div id="applianceSpecs" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" onclick="if(event.target===this)document.getElementById('privacyModal').style.display='none';" style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.9);
+        z-index: 10000;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    ">
+        <div style="
+            background: #111;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        ">
+            <button onclick="document.getElementById('privacyModal').style.display='none'" style="
+                position: sticky;
+                top: 16px;
+                float: right;
+                margin: 16px;
+                background: none;
+                border: none;
+                color: #888;
+                font-size: 28px;
+                cursor: pointer;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            ">×</button>
+            <div style="padding: 40px;">
+                <h2 style="color: #c9a962; margin-bottom: 24px; font-family: 'Montserrat', sans-serif; font-size: 24px;">Politica de Confidențialitate</h2>
+                
+                <div style="color: #ccc; font-size: 14px; line-height: 1.8;">
+                    <p style="margin-bottom: 16px;"><strong style="color: #fff;">Ultima actualizare:</strong> Ianuarie 2026</p>
+                    
+                    <h3 style="color: #c9a962; font-size: 16px; margin: 24px 0 12px;">1. Introducere</h3>
+                    <p style="margin-bottom: 16px;">E-blat.com respectă confidențialitatea datelor dumneavoastră personale. Această politică descrie modul în care colectăm, utilizăm și protejăm informațiile furnizate prin intermediul site-ului nostru.</p>
+                    
+                    <h3 style="color: #c9a962; font-size: 16px; margin: 24px 0 12px;">2. Date Colectate</h3>
+                    <p style="margin-bottom: 16px;">Prin formularul de contact, colectăm următoarele informații:</p>
+                    <ul style="margin-bottom: 16px; padding-left: 20px;">
+                        <li>Nume și prenume</li>
+                        <li>Adresa de email</li>
+                        <li>Număr de telefon</li>
+                        <li>Detalii despre proiectul dumneavoastră</li>
+                        <li>Fișiere atașate (opțional)</li>
+                    </ul>
+                    
+                    <h3 style="color: #c9a962; font-size: 16px; margin: 24px 0 12px;">3. Scopul Prelucrării</h3>
+                    <p style="margin-bottom: 16px;">Datele colectate sunt utilizate exclusiv pentru:</p>
+                    <ul style="margin-bottom: 16px; padding-left: 20px;">
+                        <li>Răspunsul la solicitările dumneavoastră de ofertă</li>
+                        <li>Comunicarea informațiilor despre produsele și serviciile noastre</li>
+                        <li>Îmbunătățirea serviciilor oferite</li>
+                    </ul>
+                    
+                    <h3 style="color: #c9a962; font-size: 16px; margin: 24px 0 12px;">4. Partajarea Datelor</h3>
+                    <p style="margin-bottom: 16px;">Nu vindem, nu închiriem și nu partajăm datele dumneavoastră personale cu terți, cu excepția cazurilor în care este necesar pentru furnizarea serviciilor solicitate sau când legea o impune.</p>
+                    
+                    <h3 style="color: #c9a962; font-size: 16px; margin: 24px 0 12px;">5. Securitatea Datelor</h3>
+                    <p style="margin-bottom: 16px;">Implementăm măsuri tehnice și organizatorice adecvate pentru a proteja datele dumneavoastră împotriva accesului neautorizat, modificării, divulgării sau distrugerii.</p>
+                    
+                    <h3 style="color: #c9a962; font-size: 16px; margin: 24px 0 12px;">6. Drepturile Dumneavoastră</h3>
+                    <p style="margin-bottom: 16px;">Conform GDPR, aveți următoarele drepturi:</p>
+                    <ul style="margin-bottom: 16px; padding-left: 20px;">
+                        <li>Dreptul de acces la datele personale</li>
+                        <li>Dreptul la rectificarea datelor inexacte</li>
+                        <li>Dreptul la ștergerea datelor ("dreptul de a fi uitat")</li>
+                        <li>Dreptul la restricționarea prelucrării</li>
+                        <li>Dreptul la portabilitatea datelor</li>
+                        <li>Dreptul de a vă opune prelucrării</li>
+                    </ul>
+                    
+                    <h3 style="color: #c9a962; font-size: 16px; margin: 24px 0 12px;">7. Perioada de Stocare</h3>
+                    <p style="margin-bottom: 16px;">Păstrăm datele dumneavoastră personale doar atât timp cât este necesar pentru scopurile menționate sau conform cerințelor legale.</p>
+                    
+                    <h3 style="color: #c9a962; font-size: 16px; margin: 24px 0 12px;">8. Contact</h3>
+                    <p style="margin-bottom: 16px;">Pentru orice întrebări sau solicitări privind datele dumneavoastră personale, ne puteți contacta la:</p>
+                    <p style="margin-bottom: 16px;">
+                        <strong style="color: #fff;">Email:</strong> contact@e-blat.com<br>
+                        <strong style="color: #fff;">Telefon:</strong> +40 744 705 911<br>
+                        <strong style="color: #fff;">Adresă:</strong> Intrarea Roma 3, București
+                    </p>
+                </div>
+                
+                <button onclick="document.getElementById('privacyModal').style.display='none'" style="
+                    background: linear-gradient(135deg, #c9a962 0%, #b8954f 100%);
+                    color: #0a0a0a;
+                    border: none;
+                    padding: 14px 40px;
+                    font-size: 14px;
+                    font-weight: 600;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-family: 'Montserrat', sans-serif;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    margin-top: 24px;
+                ">Am înțeles</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check for success parameter and show modal
+        (function() {
+            if (window.location.search.indexOf('success=true') !== -1) {
+                // Show modal when DOM is ready
+                function showModal() {
+                    var m = document.getElementById('successModal');
+                    if (m) {
+                        m.style.display = 'flex';
+                        // Clean URL
+                        if (history.replaceState) {
+                            history.replaceState(null, '', window.location.pathname);
+                        }
+                    }
+                }
+                if (document.readyState === 'complete') {
+                    showModal();
+                } else {
+                    window.addEventListener('load', showModal);
+                }
+            }
+        })();
+
+        // Material Modal Functions - defined first so onclick can use them
+        
+        // Materials Catalog Data
+        const materialsCatalog = {
+            neolith: {
+                title: 'Ceramică - Neolith',
+                description: 'Plăci ceramice sinterizate de înaltă performanță',
+                models: [
+                    {
+                        id: 'amazonico',
+                        name: 'Amazonico',
+                        subtitle: 'Verde Amazonian',
+                        texture: 'assets/Neolith_AMAZONICO-A-01_resize_-vertical.jpg',
+                        images: [
+                            'assets/amazonico_countertop_resize.jpg',
+                            'assets/amazonico_backsplash.jpg',
+                            'assets/amazonico_bathroom.jpg',
+                            'assets/amazonico_bathroom_count.jpg',
+                            'assets/Neolith_AMAZONICO-A-01_resize.jpg'
+                        ],
+                        description: 'Inspirat de pădurea amazoniană, acest model aduce tonuri profunde de verde închis cu venații naturale aurii și bej. Perfect pentru bucătării moderne și spații contemporane care doresc un element dramatic.',
+                        specs: {
+                            'Dimensiuni placă': '320 × 160 cm (finit) / 322 × 162 cm (brut)',
+                            'Grosimi disponibile': '6 mm, 12 mm',
+                            'Finisaj': 'Satinat / Silk',
+                            'Rezistență la zgârieturi': 'Foarte ridicată (Mohs 7)',
+                            'Rezistență la căldură': 'Până la 300°C direct',
+                            'Compatibil inducție': 'Da - grosime 12mm recomandat',
+                            'Absorbție apă': '< 0.1%',
+                            'Aplicații': 'Blaturi bucătărie, băi, backsplash, mobilier'
+                        }
+                    }
+                    // Alte modele vor fi adăugate aici
+                ]
+            },
+            quartz: {
+                title: 'Quartz',
+                description: 'Suprafețe din cuarț natural reconstituit',
+                models: [
+                    {
+                        id: 'coming-soon',
+                        name: 'În curând',
+                        subtitle: 'Catalog în pregătire',
+                        texture: '',
+                        images: [],
+                        description: 'Catalogul de quartz este în curs de actualizare. Contactează-ne pentru opțiunile disponibile.',
+                        specs: {}
+                    }
+                ]
+            },
+            composite: {
+                title: 'Compozit',
+                description: 'Materiale compozite durabile și versatile',
+                models: [
+                    {
+                        id: 'coming-soon',
+                        name: 'În curând',
+                        subtitle: 'Catalog în pregătire',
+                        texture: '',
+                        images: [],
+                        description: 'Catalogul de compozit este în curs de actualizare. Contactează-ne pentru opțiunile disponibile.',
+                        specs: {}
+                    }
+                ]
+            }
+        };
+
+        let currentMaterialType = null;
+        let currentModelIndex = 0;
+
+        window.openMaterialCatalog = function(type) {
+            const catalog = materialsCatalog[type];
+            if (!catalog) return;
+            
+            currentMaterialType = type;
+            currentModelIndex = 0;
+            
+            document.getElementById('modalTitle').textContent = catalog.title;
+            document.getElementById('modalDescription').textContent = catalog.description;
+            
+            // Build models list
+            const modelsList = document.getElementById('modelsList');
+            modelsList.innerHTML = '';
+            
+            catalog.models.forEach((model, index) => {
+                const item = document.createElement('div');
+                item.className = 'model-item' + (index === 0 ? ' active' : '');
+                item.onclick = () => selectModel(index);
+                item.style.cssText = `
+                    padding: 16px 20px;
+                    cursor: pointer;
+                    border-bottom: 1px solid #222;
+                    transition: all 0.3s ease;
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                `;
+                item.onmouseover = function() { if (!this.classList.contains('active')) this.style.background = '#1a1a1a'; };
+                item.onmouseout = function() { if (!this.classList.contains('active')) this.style.background = 'transparent'; };
+                
+                const thumb = model.texture ? `<div style="width: 60px; height: 60px; border-radius: 8px; overflow: hidden; flex-shrink: 0; border: 2px solid ${index === 0 ? '#c9a962' : '#333'};"><img src="${model.texture}" style="width: 100%; height: 100%; object-fit: cover;"></div>` : `<div style="width: 60px; height: 60px; border-radius: 8px; background: #222; flex-shrink: 0;"></div>`;
+                
+                item.innerHTML = `
+                    ${thumb}
+                    <div>
+                        <div style="color: #fff; font-weight: 500; font-size: 15px;">${model.name}</div>
+                        <div style="color: #888; font-size: 12px; margin-top: 4px;">${model.subtitle}</div>
+                    </div>
+                `;
+                modelsList.appendChild(item);
+            });
+            
+            // Select first model
+            if (catalog.models.length > 0) {
+                showModelDetails(catalog.models[0]);
+            }
+            
+            document.getElementById('materialModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        };
+
+        function selectModel(index) {
+            currentModelIndex = index;
+            const catalog = materialsCatalog[currentMaterialType];
+            const model = catalog.models[index];
+            
+            // Update active state in list
+            const items = document.querySelectorAll('#modelsList > div');
+            items.forEach((item, i) => {
+                if (i === index) {
+                    item.style.background = '#1a1a1a';
+                    item.classList.add('active');
+                    item.querySelector('div > div').style.borderColor = '#c9a962';
+                } else {
+                    item.style.background = 'transparent';
+                    item.classList.remove('active');
+                    const thumbDiv = item.querySelector('div > div');
+                    if (thumbDiv) thumbDiv.style.borderColor = '#333';
+                }
+            });
+            
+            showModelDetails(model);
+        }
+
+        function showModelDetails(model) {
+            const details = document.getElementById('modelDetails');
+            
+            if (model.id === 'coming-soon') {
+                details.innerHTML = `
+                    <div style="text-align: center; padding: 60px 20px;">
+                        <div style="font-size: 48px; margin-bottom: 20px;">🔜</div>
+                        <h3 style="color: #fff; font-size: 24px; margin-bottom: 12px;">${model.name}</h3>
+                        <p style="color: #888;">${model.description}</p>
+                        <a href="#contact" onclick="closeMaterialModal()" style="display: inline-block; margin-top: 24px; padding: 12px 32px; background: #c9a962; color: #0a0a0a; text-decoration: none; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Contactează-ne</a>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Build gallery
+            let galleryHTML = '';
+            if (model.images && model.images.length > 0) {
+                galleryHTML = `
+                    <div style="margin-bottom: 32px;">
+                        <div id="mainModelImage" style="width: 100%; aspect-ratio: 16/10; border-radius: 12px; overflow: hidden; margin-bottom: 16px; background: #1a1a1a;">
+                            <img src="${model.images[0]}" style="width: 100%; height: 100%; object-fit: cover; cursor: zoom-in;" onclick="openImageLightbox(this.src)">
+                        </div>
+                        <div style="display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px;">
+                            ${model.images.map((img, i) => `
+                                <img src="${img}" onclick="document.querySelector('#mainModelImage img').src='${img}'; document.querySelectorAll('#modelDetails .thumb').forEach(t=>t.style.borderColor='#333'); this.style.borderColor='#c9a962';" 
+                                    class="thumb" style="width: 80px; height: 60px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid ${i === 0 ? '#c9a962' : '#333'}; transition: border-color 0.3s;">
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Build specs
+            let specsHTML = '';
+            if (model.specs && Object.keys(model.specs).length > 0) {
+                specsHTML = `
+                    <div style="margin-top: 32px; padding-top: 32px; border-top: 1px solid #222;">
+                        <h4 style="color: #c9a962; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">Specificații Tehnice</h4>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                            ${Object.entries(model.specs).map(([label, value]) => `
+                                <div style="padding: 12px 16px; background: #1a1a1a; border-radius: 8px;">
+                                    <div style="color: #888; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">${label}</div>
+                                    <div style="color: #fff; font-size: 14px;">${value}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            details.innerHTML = `
+                <div style="display: flex; gap: 24px; align-items: flex-start; margin-bottom: 24px;">
+                    ${model.texture ? `<div style="width: 100px; height: 140px; border-radius: 8px; overflow: hidden; flex-shrink: 0; border: 1px solid #333;"><img src="${model.texture}" style="width: 100%; height: 100%; object-fit: cover;"></div>` : ''}
+                    <div>
+                        <h3 style="color: #fff; font-size: 28px; font-family: 'Montserrat', sans-serif; font-weight: 400; margin: 0 0 8px 0;">${model.name}</h3>
+                        <p style="color: #c9a962; font-size: 14px; margin: 0 0 16px 0;">${model.subtitle}</p>
+                        <p style="color: #aaa; font-size: 15px; line-height: 1.7;">${model.description}</p>
+                    </div>
+                </div>
+                ${galleryHTML}
+                ${specsHTML}
+                <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #222;">
+                    <a href="#contact" onclick="closeMaterialModal()" style="display: inline-flex; align-items: center; gap: 12px; padding: 14px 32px; background: #c9a962; color: #0a0a0a; text-decoration: none; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s;">
+                        Solicită Ofertă pentru ${model.name}
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            `;
+        }
+
+        window.closeMaterialModal = function() {
+            document.getElementById('materialModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        };
+
+        // Image Lightbox
+        window.openImageLightbox = function(src) {
+            const lightbox = document.createElement('div');
+            lightbox.id = 'imageLightbox';
+            lightbox.onclick = () => lightbox.remove();
+            lightbox.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:100000;display:flex;align-items:center;justify-content:center;cursor:zoom-out;';
+            lightbox.innerHTML = `<img src="${src}" style="max-width:95%;max-height:95%;object-fit:contain;border-radius:8px;">`;
+            document.body.appendChild(lightbox);
+        };
+
+        // Appliance data
+        const applianceData = {
+            toaster: {
+                title: 'Cordless <em>Toaster</em><span style="color:#c9a962">.</span>',
+                images: ['assets/BeCordlessTech-2026_16.jpg', 'assets/BeCordlessTech-2026_17.jpg', 'assets/BeCordlessTech-2026_18.jpg', 'assets/BeCordlessTech-2026_19.jpg', 'assets/BeCordlessTech-2026_20.jpg'],
+                description: `<p><strong>Un toaster fără seamăn.</strong> Ridică-l și așază-l în locația corectă. Baza rotundă permite o conexiune wireless ușoară - diametrul perfect aliniat și lumina instantanee indică poziționarea corectă.</p>
+                <p style="margin-top:16px"><strong>Personalizează-l după gustul tău.</strong> Schimbă învelișul exterior - capacul din oțel inoxidabil se atașează magnetic de corpul principal. Alege între finisaj metalic sau textil.</p>
+                <p style="margin-top:16px"><strong>Sloturi extra-largi</strong> pentru diferite tipuri de pâine, bagels și produse de patiserie. Display digital cu timer și 6 niveluri de prăjire.</p>`,
+                specs: [
+                    { label: 'Alimentare', value: 'Wireless CCT®' },
+                    { label: 'Sloturi', value: '4 extra-largi' },
+                    { label: 'Niveluri prăjire', value: '6' },
+                    { label: 'Display', value: 'Digital cu timer' },
+                    { label: 'Material corp', value: 'Oțel inoxidabil' },
+                    { label: 'Capac', value: 'Lemn natural' },
+                    { label: 'Înveliș', value: 'Interschimbabil (metal/textil)' },
+                    { label: 'Garanție', value: '2 ani' }
+                ]
+            },
+            kettle: {
+                title: 'Cordless <em>Kettle</em><span style="color:#c9a962">.</span>',
+                images: ['assets/BeCordlessTech-2026_21.jpg', 'assets/BeCordlessTech-2026_22.jpg', 'assets/BeCordlessTech-2026_23.jpg', 'assets/BeCordlessTech-2026_24.jpg', 'assets/BeCordlessTech-2026_25.jpg'],
+                description: `<p><strong>Spune adio limitărilor fierbătoarelor tradiționale</strong> și adoptă libertatea tehnologiei cordless. Și nu doar atât!</p>
+                <p style="margin-top:16px"><strong>Forma urmează funcția.</strong> Fierbătorul Cordless Kettle este un fierbător electric avansat cu control temperatură care combină confortul wireless cu un design carafă elegant.</p>
+                <p style="margin-top:16px"><strong>Construcție cu perete dublu</strong> pentru retenția căldurii, maximizarea eficienței energetice și funcționare silențioasă. Baza cu inel luminos îți permite să urmărești ușor poziția și starea de funcționare.</p>
+                <p style="margin-top:16px"><strong>Personalizează exteriorul</strong> - învelișul din oțel inoxidabil se atașează magnetic. Schimbă între finisaj metalic elegant sau textil cald.</p>`,
+                specs: [
+                    { label: 'Alimentare', value: 'Wireless CCT®' },
+                    { label: 'Capacitate', value: '1.7L' },
+                    { label: 'Control temperatură', value: 'Digital 40-100°C' },
+                    { label: 'Pereți', value: 'Dubli (izolație termică)' },
+                    { label: 'Display', value: 'LED cu temperatură' },
+                    { label: 'Capac', value: 'Lemn natural' },
+                    { label: 'Bază', value: 'Inel luminos indicator' },
+                    { label: 'Garanție', value: '2 ani' }
+                ]
+            },
+            airfryer: {
+                title: 'Cordless <em>Air Fryer</em><span style="color:#c9a962">.</span>',
+                images: ['assets/BeCordlessTech-2026_26.jpg', 'assets/BeCordlessTech-2026_27.jpg', 'assets/BeCordlessTech-2026_28.jpg', 'assets/BeCordlessTech-2026_29.jpg', 'assets/BeCordlessTech-2026_30.jpg', 'assets/BeCordlessTech-2026_31.jpg'],
+                description: `<p><strong>Savurează experiența culinară supremă</strong> cu iconicul Air Fryer Cordless, care echilibrează perfect stilul și funcționalitatea.</p>
+                <p style="margin-top:16px"><strong>Design elegant, plin de surprize.</strong> Începând cu mânerul - apasă pentru a-l elibera! Mânerul rabatabil permite accesul ușor la vasele interioare.</p>
+                <p style="margin-top:16px"><strong>Exact ce ai nevoie</strong> - profită la maximum de arhitectura interioară pentru a organiza boluri și farfurii de servire. Capacitate de 6L cu interfață simplă și intuitivă.</p>
+                <p style="margin-top:16px"><strong>Personalizează învelișul</strong> - schimbă de la oțel inoxidabil la textil pentru a se potrivi cu bucătăria ta.</p>`,
+                specs: [
+                    { label: 'Alimentare', value: 'Wireless CCT®' },
+                    { label: 'Capacitate', value: '6 Litri' },
+                    { label: 'Temperatură', value: '80-200°C' },
+                    { label: 'Timer', value: '0-60 minute' },
+                    { label: 'Display', value: 'Touch digital' },
+                    { label: 'Programe', value: '8 presetări' },
+                    { label: 'Mâner', value: 'Rabatabil' },
+                    { label: 'Accesorii', value: 'Vase incluse' },
+                    { label: 'Garanție', value: '2 ani' }
+                ]
+            },
+            blender: {
+                title: 'Cordless <em>Table Blender</em><span style="color:#c9a962">.</span>',
+                images: ['assets/BeCordlessTech-2026_32.jpg', 'assets/BeCordlessTech-2026_33.jpg', 'assets/BeCordlessTech-2026_34.jpg', 'assets/BeCordlessTech-2026_35.jpg'],
+                description: `<p><strong>Următorul pas al blenderului.</strong> Merge acolo unde niciun blender de masă n-a mai fost. Puternic. Estetic. Fără efort.</p>
+                <p style="margin-top:16px"><strong>Baza rotundă permite o conexiune Cordless® ușoară.</strong> Diametrul perfect aliniat și lumina instantanee indică poziționarea corectă. Ridică-l și așază-l în locul potrivit!</p>
+                <p style="margin-top:16px"><strong>Creat cu grijă</strong> - capacul din lemn natural este conceput pentru a fi ușor de deschis și umplut. Containerul ghidează ingredientele înapoi spre lame pentru o amestecare mai rapidă și eficientă.</p>`,
+                specs: [
+                    { label: 'Alimentare', value: 'Wireless CCT®' },
+                    { label: 'Capacitate', value: '1.5L' },
+                    { label: 'Viteze', value: 'Variabil + Pulse' },
+                    { label: 'Programe', value: 'PowerMix, Crush, Mix, Puree' },
+                    { label: 'Lame', value: 'Oțel inoxidabil 6 lame' },
+                    { label: 'Capac', value: 'Lemn natural' },
+                    { label: 'Container', value: 'Tritan fără BPA' },
+                    { label: 'Garanție', value: '2 ani' }
+                ]
+            }
+        };
+
+        window.openApplianceModal = function(type) {
+            const data = applianceData[type];
+            if (!data) return;
+            
+            document.getElementById('applianceTitle').innerHTML = data.title;
+            document.getElementById('applianceMainImg').src = data.images[0];
+            document.getElementById('applianceDescription').innerHTML = data.description;
+            
+            // Build thumbnails
+            const thumbsContainer = document.getElementById('thumbnails');
+            thumbsContainer.innerHTML = '';
+            data.images.forEach((img, i) => {
+                const thumb = document.createElement('img');
+                thumb.src = img;
+                thumb.style.cssText = 'width:80px;height:60px;object-fit:cover;border-radius:8px;cursor:pointer;opacity:' + (i===0?'1':'0.5') + ';transition:opacity 0.3s;border:2px solid ' + (i===0?'#c9a962':'transparent');
+                thumb.onclick = function() {
+                    document.getElementById('applianceMainImg').src = img;
+                    thumbsContainer.querySelectorAll('img').forEach(t => { t.style.opacity='0.5'; t.style.borderColor='transparent'; });
+                    this.style.opacity = '1';
+                    this.style.borderColor = '#c9a962';
+                };
+                thumbsContainer.appendChild(thumb);
+            });
+            
+            // Build specs
+            const specsContainer = document.getElementById('applianceSpecs');
+            specsContainer.innerHTML = '';
+            data.specs.forEach(spec => {
+                const div = document.createElement('div');
+                div.innerHTML = '<span style="color:#888;font-size:12px;text-transform:uppercase;letter-spacing:1px;">' + spec.label + '</span><br><span style="color:#fff;font-size:15px;font-weight:500;">' + spec.value + '</span>';
+                specsContainer.appendChild(div);
+            });
+            
+            document.getElementById('applianceModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        window.closeApplianceModal = function() {
+            document.getElementById('applianceModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.openMaterialModal = function(title, description) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalDescription').textContent = description;
+            document.getElementById('materialModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        window.closeMaterialModal = function() {
+            document.getElementById('materialModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                    // Close mobile menu if open
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+
+        // Form submission placeholder
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert('Mulțumim pentru mesaj! Te vom contacta în curând.');
+        }
+
+        // Wait for DOM to load before adding event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Close modal on outside click
+            const modal = document.getElementById('materialModal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeMaterialModal();
+                    }
+                });
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMaterialModal();
+            }
+        });
+
+        // File upload handling
+        const fileInput = document.getElementById('files');
+        const fileList = document.getElementById('fileList');
+        const offerForm = document.getElementById('offerForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const formStatus = document.getElementById('formStatus');
+
+        // Display selected files
+        fileInput.addEventListener('change', function() {
+            fileList.innerHTML = '';
+            const files = this.files;
+            let totalSize = 0;
+            
+            for (let i = 0; i < files.length; i++) {
+                totalSize += files[i].size;
+                const fileSize = (files[i].size / 1024 / 1024).toFixed(2);
+                fileList.innerHTML += `<div>📎 ${files[i].name} (${fileSize} MB)</div>`;
+            }
+            
+            if (totalSize > 10 * 1024 * 1024) {
+                fileList.innerHTML += '<div style="color: #c96262;">⚠️ Dimensiunea totală depășește 10MB!</div>';
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(section);
+        });
+    </script>
+
+    <!-- Success Modal Script - at the very end -->
+    <script>
+        // This runs after everything is loaded
+        if (window.location.search.indexOf('success=true') !== -1) {
+            document.getElementById('successModal').style.display = 'flex';
+            history.replaceState(null, '', window.location.pathname);
+        }
+    </script>
+</body>
+</html>
