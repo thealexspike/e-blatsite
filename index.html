@@ -807,7 +807,12 @@
             }
 
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                color: #d0d0d0;
+                font-size: 1rem;
             }
 
             .materials-grid {
@@ -948,6 +953,54 @@
                 grid-template-columns: 1fr !important;
             }
         }
+        /* Floating Contact Button */
+        .floating-contact {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 24px;
+            background: linear-gradient(135deg, #c9a962 0%, #b8954f 100%);
+            color: #0a0a0a;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(201, 169, 98, 0.4);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+
+        .floating-contact.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .floating-contact:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 30px rgba(201, 169, 98, 0.5);
+        }
+
+        .floating-contact svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .floating-contact {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 13px;
+            }
+        }
+
         /* Minimal Scrollbar - Gold Accent */
         ::-webkit-scrollbar {
             width: 8px;
@@ -1532,6 +1585,14 @@
         </div>
     </section>
 
+    <!-- Floating Contact Button -->
+    <a href="#contact" class="floating-contact" id="floatingContact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        Contactează-ne
+    </a>
+
     <!-- Footer -->
     <footer>
         <div class="footer-logo">e-blat<span>.com</span></div>
@@ -1819,7 +1880,7 @@
                     <p style="margin-bottom: 16px;">Pentru orice întrebări sau solicitări privind datele dumneavoastră personale, ne puteți contacta la:</p>
                     <p style="margin-bottom: 16px;">
                         <strong style="color: #fff;">Email:</strong> contact@e-blat.com<br>
-                        <strong style="color: #fff;">Telefon:</strong> +40 744 705 911<br>
+                        <strong style="color: #fff;">Telefon:</strong> +40 741 300 689<br>
                         <strong style="color: #fff;">Adresă:</strong> Intrarea Roma 3, București
                     </p>
                 </div>
@@ -1903,6 +1964,17 @@
             const heroBg = document.querySelector('.hero-bg');
             if (heroBg && scrolled < window.innerHeight) {
                 heroBg.style.transform = 'scale(1.05) translateY(' + (scrolled * 0.4) + 'px)';
+            }
+            
+            // Floating contact button visibility
+            const floatingBtn = document.getElementById('floatingContact');
+            const heroHeight = document.querySelector('.hero')?.offsetHeight || 600;
+            if (floatingBtn) {
+                if (scrolled > heroHeight - 100) {
+                    floatingBtn.classList.add('visible');
+                } else {
+                    floatingBtn.classList.remove('visible');
+                }
             }
         });
 
