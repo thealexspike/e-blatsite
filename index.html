@@ -1604,7 +1604,7 @@
         <div class="footer-logo">e-blat<span>.com</span></div>
         <p class="footer-text">© 2026 e-blat.com. Toate drepturile rezervate.</p>
         <div class="footer-social">
-            <a href="#" aria-label="Instagram">
+            <a href="https://www.instagram.com/e_blat_com/" target="_blank" aria-label="Instagram">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
@@ -1978,8 +1978,16 @@
             // Floating contact button visibility
             const floatingBtn = document.getElementById('floatingContact');
             const heroHeight = document.querySelector('.hero')?.offsetHeight || 600;
-            if (floatingBtn) {
-                if (scrolled > heroHeight - 100) {
+            const contactSection = document.getElementById('contact');
+            const footer = document.querySelector('footer');
+            
+            if (floatingBtn && contactSection) {
+                const contactTop = contactSection.getBoundingClientRect().top;
+                const footerTop = footer ? footer.getBoundingClientRect().top : window.innerHeight + 100;
+                const windowHeight = window.innerHeight;
+                
+                // Show only after hero AND not when contact section or footer is visible
+                if (scrolled > heroHeight - 100 && contactTop > windowHeight && footerTop > windowHeight) {
                     floatingBtn.classList.add('visible');
                 } else {
                     floatingBtn.classList.remove('visible');
