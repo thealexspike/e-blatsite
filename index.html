@@ -1084,8 +1084,7 @@
         
         <div class="materials-grid">
             <div class="material-card" id="neolithCard" onclick="openMaterialCatalog('neolith')" style="cursor:pointer; position: relative;">
-                <div class="material-bg neolith-slide" id="neolithSlide1" style="background-image: url('assets/Neolith_AMAZONICO-A-01_resize_-vertical.jpg'); opacity: 1; transition: opacity 1s ease-in-out; z-index: 0;"></div>
-                <div class="material-bg neolith-slide" id="neolithSlide2" style="background-image: url('assets/Neolith_Calacatta_Gold.jpg'); opacity: 0; transition: opacity 1s ease-in-out; z-index: 0;"></div>
+                <div class="material-bg" id="neolithBg" style="background-image: url('assets/Neolith_AMAZONICO-A-01_resize_-vertical.jpg'); transition: opacity 0.8s ease-in-out; z-index: 0;"></div>
                 <div class="material-content" style="z-index: 2;">
                     <h4>Ceramică - Neolith</h4>
                     <p id="neolithModelName" style="transition: opacity 0.5s ease-in-out;">Amazonico</p>
@@ -1353,7 +1352,7 @@
                     </svg>
                     WhatsApp
                 </a>
-                <a href="mailto:contact@e-blat.com" style="display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid #c9a962; color: #c9a962; padding: 12px 20px; border-radius: 25px; font-size: 14px; text-decoration: none; font-weight: 500;">
+                <a href="/cdn-cgi/l/email-protection#c9aaa6a7bda8aabd89ace4aba5a8bde7aaa6a4" style="display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid #c9a962; color: #c9a962; padding: 12px 20px; border-radius: 25px; font-size: 14px; text-decoration: none; font-weight: 500;">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                         <polyline points="22,6 12,13 2,6"/>
@@ -1395,7 +1394,7 @@
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                         <polyline points="22,6 12,13 2,6"/>
                     </svg>
-                    <p><a href="mailto:contact@e-blat.com" data-cfasync="false">contact@e-blat.com</a></p>
+                    <p><a href="/cdn-cgi/l/email-protection#50333f3e2431332410357d323c31247e333f3d" data-cfasync="false"><span class="__cf_email__" data-cfemail="11727e7f6570726551743c737d70653f727e7c">[email&#160;protected]</span></a></p>
                 </div>
                 
                 <div class="contact-item">
@@ -1879,7 +1878,7 @@
                     <h3 style="color: #c9a962; font-size: 16px; margin: 24px 0 12px;">8. Contact</h3>
                     <p style="margin-bottom: 16px;">Pentru orice întrebări sau solicitări privind datele dumneavoastră personale, ne puteți contacta la:</p>
                     <p style="margin-bottom: 16px;">
-                        <strong style="color: #fff;">Email:</strong> contact@e-blat.com<br>
+                        <strong style="color: #fff;">Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="472428293326243307226a252b26336924282a">[email&#160;protected]</a><br>
                         <strong style="color: #fff;">Telefon:</strong> +40 741 300 689<br>
                         <strong style="color: #fff;">Adresă:</strong> Intrarea Roma 3, București
                     </p>
@@ -1903,7 +1902,7 @@
         </div>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Check for success parameter and show modal
         (function() {
             if (window.location.search.indexOf('success=true') !== -1) {
@@ -1928,8 +1927,11 @@
 
         // Neolith Card Slideshow - Crossfade
         const neolithSlides = [
-            { name: 'Amazonico' },
-            { name: 'Calacatta Gold' }
+            { name: 'Amazonico', texture: 'assets/Neolith_AMAZONICO-A-01_resize_-vertical.jpg' },
+            { name: 'Calacatta Gold', texture: 'assets/Neolith_Calacatta_Gold.jpg' },
+            { name: 'Iron Corten', texture: 'assets/Neolith_Iron_Corten.jpg' },
+            { name: 'Niagara', texture: 'assets/NIAGARA.jpg' },
+            { name: 'Arabesque', texture: 'assets/ARABESQUE.jpg' }
         ];
         let currentNeolithSlide = 0;
 
@@ -1984,29 +1986,23 @@
         }
 
         function updateNeolithSlide() {
-            const slide1 = document.getElementById('neolithSlide1');
-            const slide2 = document.getElementById('neolithSlide2');
+            const bg = document.getElementById('neolithBg');
             const nameEl = document.getElementById('neolithModelName');
             const dots = document.querySelectorAll('#neolithDots > div');
             
-            console.log('Switching to slide:', currentNeolithSlide);
-            
-            if (slide1 && slide2 && nameEl) {
-                // Crossfade between slides
-                if (currentNeolithSlide === 0) {
-                    slide1.style.opacity = '1';
-                    slide2.style.opacity = '0';
-                } else {
-                    slide1.style.opacity = '0';
-                    slide2.style.opacity = '1';
-                }
-                
-                // Update name with fade
+            if (bg && nameEl) {
+                // Fade out
+                bg.style.opacity = '0';
                 nameEl.style.opacity = '0';
+                
                 setTimeout(() => {
+                    bg.style.backgroundImage = `url('${neolithSlides[currentNeolithSlide].texture}')`;
                     nameEl.textContent = neolithSlides[currentNeolithSlide].name;
+                    
+                    // Fade in
+                    bg.style.opacity = '1';
                     nameEl.style.opacity = '1';
-                }, 300);
+                }, 400);
             }
             
             dots.forEach((dot, i) => {
@@ -2062,6 +2058,75 @@
                             'assets/Neolith_Calacatta_Gold.jpg'
                         ],
                         description: 'Inspirat de celebra marmură italiană Calacatta, acest model oferă un fundal alb pur cu venații elegante gri și aurii. Alegerea perfectă pentru bucătării luxoase și spații care doresc un aspect clasic și rafinat.',
+                        specs: {
+                            'Dimensiuni placă': '320 × 160 cm (finit) / 322 × 162 cm (brut)',
+                            'Grosimi disponibile': '6 mm, 12 mm',
+                            'Finisaj': 'Satinat / Silk',
+                            'Rezistență la zgârieturi': 'Foarte ridicată (Mohs 7)',
+                            'Rezistență la căldură': 'Până la 300°C direct',
+                            'Compatibil inducție': 'Da - grosime 12mm recomandat',
+                            'Absorbție apă': '< 0.1%',
+                            'Aplicații': 'Blaturi bucătărie, băi, backsplash, mobilier'
+                        }
+                    },
+                    {
+                        id: 'iron-corten',
+                        name: 'Iron Corten',
+                        subtitle: 'Oțel Ruginit Industrial',
+                        texture: 'assets/Neolith_Iron_Corten.jpg',
+                        images: [
+                            'assets/Iron_Corten_countertop.jpg',
+                            'assets/Iron_Corten_bathroom_countertop.jpg',
+                            'assets/iron_corten_shower_tray.jpg',
+                            'assets/Neolith_Iron_Corten.jpg'
+                        ],
+                        description: 'Inspirat de aspectul oțelului corten oxidat, acest model aduce un look industrial-chic cu tonuri calde de rugină și textură dramatică. Perfect pentru spații contemporane și design industrial.',
+                        specs: {
+                            'Dimensiuni placă': '320 × 160 cm (finit) / 322 × 162 cm (brut)',
+                            'Grosimi disponibile': '6 mm, 12 mm',
+                            'Finisaj': 'Satinat / Silk',
+                            'Rezistență la zgârieturi': 'Foarte ridicată (Mohs 7)',
+                            'Rezistență la căldură': 'Până la 300°C direct',
+                            'Compatibil inducție': 'Da - grosime 12mm recomandat',
+                            'Absorbție apă': '< 0.1%',
+                            'Aplicații': 'Blaturi bucătărie, băi, backsplash, mobilier'
+                        }
+                    },
+                    {
+                        id: 'niagara',
+                        name: 'Niagara',
+                        subtitle: 'Marmură Neagră Elegantă',
+                        texture: 'assets/NIAGARA.jpg',
+                        images: [
+                            'assets/niagara_countertop.jpg',
+                            'assets/Niagara_cladding.jpg',
+                            'assets/niagara_furniture.jpg',
+                            'assets/NIAGARA.jpg'
+                        ],
+                        description: 'Un negru profund cu venații albe delicate, Niagara evocă eleganța marmurei negre clasice. Alegerea ideală pentru spații sofisticate care doresc un statement puternic.',
+                        specs: {
+                            'Dimensiuni placă': '320 × 160 cm (finit) / 322 × 162 cm (brut)',
+                            'Grosimi disponibile': '6 mm, 12 mm',
+                            'Finisaj': 'Satinat / Silk',
+                            'Rezistență la zgârieturi': 'Foarte ridicată (Mohs 7)',
+                            'Rezistență la căldură': 'Până la 300°C direct',
+                            'Compatibil inducție': 'Da - grosime 12mm recomandat',
+                            'Absorbție apă': '< 0.1%',
+                            'Aplicații': 'Blaturi bucătărie, băi, backsplash, mobilier'
+                        }
+                    },
+                    {
+                        id: 'arabesque',
+                        name: 'Arabesque',
+                        subtitle: 'Marmură Albă Clasică',
+                        texture: 'assets/ARABESQUE.jpg',
+                        images: [
+                            'assets/arabesque_kitchen.jpg',
+                            'assets/arabesque_detail.jpg',
+                            'assets/Arabesque_furniture.jpg',
+                            'assets/ARABESQUE.jpg'
+                        ],
+                        description: 'Un alb luminos cu venații gri elegante în mișcare, Arabesque recreează frumusețea marmurei naturale. Perfect pentru bucătării luminoase și interioare clasice sau contemporane.',
                         specs: {
                             'Dimensiuni placă': '320 × 160 cm (finit) / 322 × 162 cm (brut)',
                             'Grosimi disponibile': '6 mm, 12 mm',
@@ -2559,17 +2624,4 @@
             section.style.opacity = '0';
             section.style.transform = 'translateY(30px)';
             section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            observer.observe(section);
-        });
-    </script>
-
-    <!-- Success Modal Script - at the very end -->
-    <script>
-        // This runs after everything is loaded
-        if (window.location.search.indexOf('success=true') !== -1) {
-            document.getElementById('successModal').style.display = 'flex';
-            history.replaceState(null, '', window.location.pathname);
-        }
-    </script>
-</body>
-</html>
+            observer.observe(se
