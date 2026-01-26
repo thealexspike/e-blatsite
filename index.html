@@ -1352,7 +1352,7 @@
                     </svg>
                     WhatsApp
                 </a>
-                <a href="/cdn-cgi/l/email-protection#c9aaa6a7bda8aabd89ace4aba5a8bde7aaa6a4" style="display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid #c9a962; color: #c9a962; padding: 12px 20px; border-radius: 25px; font-size: 14px; text-decoration: none; font-weight: 500;">
+                <a href="mailto:contact@e-blat.com" style="display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid #c9a962; color: #c9a962; padding: 12px 20px; border-radius: 25px; font-size: 14px; text-decoration: none; font-weight: 500;">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                         <polyline points="22,6 12,13 2,6"/>
@@ -1394,7 +1394,7 @@
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                         <polyline points="22,6 12,13 2,6"/>
                     </svg>
-                    <p><a href="/cdn-cgi/l/email-protection#50333f3e2431332410357d323c31247e333f3d" data-cfasync="false"><span class="__cf_email__" data-cfemail="11727e7f6570726551743c737d70653f727e7c">[email&#160;protected]</span></a></p>
+                    <p><a href="mailto:contact@e-blat.com" data-cfasync="false">contact@e-blat.com</a></p>
                 </div>
                 
                 <div class="contact-item">
@@ -1878,7 +1878,7 @@
                     <h3 style="color: #c9a962; font-size: 16px; margin: 24px 0 12px;">8. Contact</h3>
                     <p style="margin-bottom: 16px;">Pentru orice întrebări sau solicitări privind datele dumneavoastră personale, ne puteți contacta la:</p>
                     <p style="margin-bottom: 16px;">
-                        <strong style="color: #fff;">Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="472428293326243307226a252b26336924282a">[email&#160;protected]</a><br>
+                        <strong style="color: #fff;">Email:</strong> contact@e-blat.com<br>
                         <strong style="color: #fff;">Telefon:</strong> +40 741 300 689<br>
                         <strong style="color: #fff;">Adresă:</strong> Intrarea Roma 3, București
                     </p>
@@ -1902,7 +1902,7 @@
         </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Check for success parameter and show modal
         (function() {
             if (window.location.search.indexOf('success=true') !== -1) {
@@ -2285,8 +2285,31 @@
             showModelDetails(model);
         }
 
+        function changeMainImage(src, needsRotation) {
+            const mainImg = document.querySelector('#mainModelImage img');
+            if (mainImg) {
+                mainImg.src = src;
+                if (needsRotation) {
+                    mainImg.style.transform = 'rotate(90deg)';
+                    mainImg.style.width = 'auto';
+                    mainImg.style.height = '100%';
+                } else {
+                    mainImg.style.transform = 'none';
+                    mainImg.style.width = '100%';
+                    mainImg.style.height = '100%';
+                }
+            }
+            document.querySelectorAll('#modelDetails .thumb').forEach(t => t.style.borderColor = '#333');
+            event.target.style.borderColor = '#c9a962';
+        }
+
         function showModelDetails(model) {
             const details = document.getElementById('modelDetails');
+            
+            // Check if image is a texture (needs rotation)
+            const isTextureImage = (src) => {
+                return src.includes('Neolith_') || src.includes('NIAGARA') || src.includes('ARABESQUE');
+            };
             
             if (model.id === 'coming-soon') {
                 details.innerHTML = `
@@ -2303,14 +2326,15 @@
             // Build gallery
             let galleryHTML = '';
             if (model.images && model.images.length > 0) {
+                const firstImgRotate = isTextureImage(model.images[0]) ? 'transform: rotate(90deg); width: auto; height: 100%;' : '';
                 galleryHTML = `
                     <div style="margin-bottom: 32px;">
-                        <div id="mainModelImage" style="width: 100%; aspect-ratio: 16/10; border-radius: 12px; overflow: hidden; margin-bottom: 16px; background: #1a1a1a;">
-                            <img src="${model.images[0]}" style="width: 100%; height: 100%; object-fit: cover; cursor: zoom-in;" onclick="openImageLightbox(this.src)">
+                        <div id="mainModelImage" style="width: 100%; aspect-ratio: 16/10; border-radius: 12px; overflow: hidden; margin-bottom: 16px; background: #1a1a1a; display: flex; align-items: center; justify-content: center;">
+                            <img src="${model.images[0]}" style="width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; ${firstImgRotate}" onclick="openImageLightbox(this.src)" data-original-src="${model.images[0]}">
                         </div>
                         <div style="display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px;">
                             ${model.images.map((img, i) => `
-                                <img src="${img}" onclick="document.querySelector('#mainModelImage img').src='${img}'; document.querySelectorAll('#modelDetails .thumb').forEach(t=>t.style.borderColor='#333'); this.style.borderColor='#c9a962';" 
+                                <img src="${img}" onclick="changeMainImage('${img}', ${isTextureImage(img)})" 
                                     class="thumb" style="width: 80px; height: 60px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid ${i === 0 ? '#c9a962' : '#333'}; transition: border-color 0.3s;">
                             `).join('')}
                         </div>
@@ -2624,4 +2648,17 @@
             section.style.opacity = '0';
             section.style.transform = 'translateY(30px)';
             section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            observer.observe(se
+            observer.observe(section);
+        });
+    </script>
+
+    <!-- Success Modal Script - at the very end -->
+    <script>
+        // This runs after everything is loaded
+        if (window.location.search.indexOf('success=true') !== -1) {
+            document.getElementById('successModal').style.display = 'flex';
+            history.replaceState(null, '', window.location.pathname);
+        }
+    </script>
+</body>
+</html>
