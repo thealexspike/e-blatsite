@@ -2167,8 +2167,18 @@
                     },
                     // Alte modele vor fi adăugate aici
                     {
+                        id: 'catalog-pdf',
+                        name: 'Vezi tot catalogul',
+                        subtitle: 'Catalog Neolith PDF',
+                        texture: '',
+                        images: [],
+                        description: '',
+                        specs: {},
+                        isCatalogPDF: true
+                    },
+                    {
                         id: 'configurator-cta',
-                        name: 'Vezi toate decorurile',
+                        name: 'Folosește decorurile în configurator',
                         subtitle: 'Configurator 3D',
                         texture: '',
                         images: [],
@@ -2231,8 +2241,30 @@
                 const item = document.createElement('div');
                 item.className = 'model-item' + (index === 0 ? ' active' : '');
                 
-                // Special styling for configurator CTA
-                if (model.isConfiguratorCTA) {
+                // Special styling for catalog PDF CTA
+                if (model.isCatalogPDF) {
+                    item.onclick = () => window.open('assets/neolith_gallery.pdf', '_blank');
+                    item.style.cssText = `
+                        padding: 20px;
+                        cursor: pointer;
+                        background: linear-gradient(135deg, rgba(201,169,98,0.15) 0%, rgba(201,169,98,0.05) 100%);
+                        border: 1px dashed #c9a962;
+                        border-radius: 8px;
+                        text-align: center;
+                        transition: all 0.3s ease;
+                        width: 100%;
+                        box-sizing: border-box;
+                        margin-bottom: 10px;
+                    `;
+                    item.onmouseover = function() { this.style.background = 'linear-gradient(135deg, rgba(201,169,98,0.25) 0%, rgba(201,169,98,0.1) 100%)'; };
+                    item.onmouseout = function() { this.style.background = 'linear-gradient(135deg, rgba(201,169,98,0.15) 0%, rgba(201,169,98,0.05) 100%)'; };
+                    item.innerHTML = `
+                        <div style="font-size: 28px; margin-bottom: 8px;">📄</div>
+                        <div style="color: #c9a962; font-weight: 600; font-size: 14px;">${model.name}</div>
+                        <div style="color: #888; font-size: 12px; margin-top: 4px;">${model.subtitle}</div>
+                        <div style="color: #c9a962; font-size: 11px; margin-top: 8px; text-transform: uppercase; letter-spacing: 1px;">Descarcă PDF →</div>
+                    `;
+                } else if (model.isConfiguratorCTA) {
                     item.onclick = () => window.open('https://configurator.e-blat.com', '_blank');
                     item.style.cssText = `
                         padding: 20px;
