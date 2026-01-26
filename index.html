@@ -767,7 +767,7 @@
             }
 
             .tech-image {
-                display: none;
+                display: block;
             }
 
             .tech-features {
@@ -775,6 +775,18 @@
             }
 
             .interactive-demo-section {
+                display: block !important;
+            }
+
+            /* Remove hover effect on mobile - show hover image directly */
+            .interactive-demo-section img:not(.hover-img) {
+                display: none !important;
+            }
+            .interactive-demo-section .hover-img {
+                position: relative !important;
+                opacity: 1 !important;
+            }
+            .interactive-demo-section .hint {
                 display: none !important;
             }
 
