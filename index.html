@@ -2292,31 +2292,45 @@
             showModelDetails(model);
         }
 
-        function changeMainImage(src, needsRotation) {
+        function changeMainImage(src) {
             const mainImg = document.querySelector('#mainModelImage img');
             if (mainImg) {
+                // Reset styles first
+                mainImg.style.transform = 'none';
+                mainImg.style.width = '100%';
+                mainImg.style.height = '100%';
+                // Set onload to check proportions after new image loads
+                mainImg.onload = function() { checkAndRotateImage(this); };
                 mainImg.src = src;
-                if (needsRotation) {
-                    mainImg.style.transform = 'rotate(90deg)';
-                    mainImg.style.width = 'auto';
-                    mainImg.style.height = '100%';
-                } else {
-                    mainImg.style.transform = 'none';
-                    mainImg.style.width = '100%';
-                    mainImg.style.height = '100%';
-                }
             }
             document.querySelectorAll('#modelDetails .thumb').forEach(t => t.style.borderColor = '#333');
             event.target.style.borderColor = '#c9a962';
         }
 
+        function checkAndRotateImage(img) {
+            // Check if image is portrait (height > width) - needs rotation to landscape
+            if (img.naturalHeight > img.naturalWidth) {
+                // Calculate scale needed to fill container after rotation
+                const container = img.parentElement;
+                const containerRatio = container.offsetWidth / container.offsetHeight;
+                const imageRatio = img.naturalWidth / img.naturalHeight; // after rotation this becomes the visible ratio
+                const scale = Math.max(containerRatio / imageRatio, 1.6);
+                
+                img.style.transform = `rotate(90deg) scale(${scale})`;
+                img.style.width = 'auto';
+                img.style.height = '100%';
+                img.style.maxWidth = 'none';
+                img.style.objectFit = 'cover';
+            } else {
+                img.style.transform = 'none';
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'cover';
+            }
+        }
+
         function showModelDetails(model) {
             const details = document.getElementById('modelDetails');
-            
-            // Check if image is a texture (needs rotation)
-            const isTextureImage = (src) => {
-                return src.includes('Neolith_') || src.includes('NIAGARA') || src.includes('ARABESQUE');
-            };
             
             if (model.id === 'coming-soon') {
                 details.innerHTML = `
@@ -2333,15 +2347,14 @@
             // Build gallery
             let galleryHTML = '';
             if (model.images && model.images.length > 0) {
-                const firstImgRotate = isTextureImage(model.images[0]) ? 'transform: rotate(90deg); width: auto; height: 100%;' : '';
                 galleryHTML = `
                     <div style="margin-bottom: 32px;">
                         <div id="mainModelImage" style="width: 100%; aspect-ratio: 16/10; border-radius: 12px; overflow: hidden; margin-bottom: 16px; background: #1a1a1a; display: flex; align-items: center; justify-content: center;">
-                            <img src="${model.images[0]}" style="width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; ${firstImgRotate}" onclick="openImageLightbox(this.src)" data-original-src="${model.images[0]}">
+                            <img src="${model.images[0]}" style="width: 100%; height: 100%; object-fit: cover; cursor: zoom-in;" onclick="openImageLightbox(this.src)" onload="checkAndRotateImage(this)">
                         </div>
                         <div style="display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px;">
                             ${model.images.map((img, i) => `
-                                <img src="${img}" onclick="changeMainImage('${img}', ${isTextureImage(img)})" 
+                                <img src="${img}" onclick="changeMainImage('${img}')" 
                                     class="thumb" style="width: 80px; height: 60px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid ${i === 0 ? '#c9a962' : '#333'}; transition: border-color 0.3s;">
                             `).join('')}
                         </div>
