@@ -2547,14 +2547,14 @@
             // Update active state in list
             const items = document.querySelectorAll('#modelsList > div');
             items.forEach((item, i) => {
+                const thumbDiv = item.querySelector('div > div');
                 if (i === index) {
                     item.style.background = '#1a1a1a';
                     item.classList.add('active');
-                    item.querySelector('div > div').style.borderColor = '#c9a962';
+                    if (thumbDiv) thumbDiv.style.borderColor = '#c9a962';
                 } else {
                     item.style.background = 'transparent';
                     item.classList.remove('active');
-                    const thumbDiv = item.querySelector('div > div');
                     if (thumbDiv) thumbDiv.style.borderColor = '#333';
                 }
             });
@@ -2562,13 +2562,13 @@
             showModelDetails(model);
         }
 
-        function changeMainImage(src) {
+        function changeMainImage(src, clickedThumb) {
             const mainImg = document.querySelector('#mainModelImage img');
             if (mainImg) {
                 mainImg.src = src;
             }
             document.querySelectorAll('#modelDetails .thumb').forEach(t => t.style.borderColor = '#333');
-            event.target.style.borderColor = '#c9a962';
+            if (clickedThumb) clickedThumb.style.borderColor = '#c9a962';
         }
 
         function showModelDetails(model) {
@@ -2596,7 +2596,7 @@
                         </div>
                         <div style="display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px;">
                             ${model.images.map((img, i) => `
-                                <img src="${img}" onclick="changeMainImage('${img}')" 
+                                <img src="${img}" onclick="changeMainImage('${img}', this)" 
                                     class="thumb" style="width: 80px; height: 60px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid ${i === 0 ? '#c9a962' : '#333'}; transition: border-color 0.3s;">
                             `).join('')}
                         </div>
@@ -2834,23 +2834,23 @@
             alert('Mulțumim pentru mesaj! Te vom contacta în curând.');
         }
 
-        // Wait for DOM to load before adding event listeners
-        document.addEventListener('DOMContentLoaded', function() {
-            // Close modal on outside click
-            const modal = document.getElementById('materialModal');
-            if (modal) {
-                modal.addEventListener('click', function(e) {
-                    if (e.target === this) {
-                        closeMaterialModal();
-                    }
-                });
-            }
-        });
-
-        // Close modal on Escape key
+        // Close active modal on Escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                closeMaterialModal();
+                const lightbox = document.getElementById('imageLightbox');
+                if (lightbox) { lightbox.remove(); return; }
+                
+                const applianceModal = document.getElementById('applianceModal');
+                if (applianceModal && applianceModal.style.display === 'flex') { closeApplianceModal(); return; }
+                
+                const materialModal = document.getElementById('materialModal');
+                if (materialModal && materialModal.style.display === 'flex') { closeMaterialModal(); return; }
+                
+                const privacyModal = document.getElementById('privacyModal');
+                if (privacyModal && privacyModal.style.display === 'flex') { privacyModal.style.display = 'none'; return; }
+                
+                const successModal = document.getElementById('successModal');
+                if (successModal && successModal.style.display === 'flex') { successModal.style.display = 'none'; return; }
             }
         });
 
