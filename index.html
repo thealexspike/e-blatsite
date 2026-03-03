@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <!-- reCAPTCHA v3 -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LeluX4sAAAAALb7-qrWrTZhWFr8p_36DjSOv-Qf"></script>
     <style>
         * {
             margin: 0;
@@ -972,6 +974,35 @@
                 grid-template-columns: 1fr !important;
             }
         }
+        /* Honeypot anti-bot trap */
+        .form-website-url {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 0;
+            width: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        /* Hide reCAPTCHA badge - branding shown in form instead */
+        .grecaptcha-badge {
+            visibility: hidden !important;
+        }
+
+        .recaptcha-branding {
+            font-size: 11px;
+            color: #666;
+            line-height: 1.5;
+            margin-top: 8px;
+        }
+        .recaptcha-branding a {
+            color: #888;
+            text-decoration: underline;
+        }
+
         /* Floating Contact Button */
         .floating-contact {
             position: fixed;
@@ -1371,7 +1402,7 @@
                     </svg>
                     WhatsApp
                 </a>
-                <a href="mailto:contact@e-blat.com" style="display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid #c9a962; color: #c9a962; padding: 12px 20px; border-radius: 25px; font-size: 14px; text-decoration: none; font-weight: 500;">
+                <a href="/cdn-cgi/l/email-protection#b3d0dcddc7d2d0c7f3d69ed1dfd2c79dd0dcde" style="display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid #c9a962; color: #c9a962; padding: 12px 20px; border-radius: 25px; font-size: 14px; text-decoration: none; font-weight: 500;">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                         <polyline points="22,6 12,13 2,6"/>
@@ -1413,7 +1444,7 @@
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                         <polyline points="22,6 12,13 2,6"/>
                     </svg>
-                    <p><a href="mailto:contact@e-blat.com" data-cfasync="false">contact@e-blat.com</a></p>
+                    <p><a href="/cdn-cgi/l/email-protection#1e7d71706a7f7d6a5e7b337c727f6a307d7173" data-cfasync="false"><span class="__cf_email__" data-cfemail="32515d5c4653514672571f505e53461c515d5f">[email&#160;protected]</span></a></p>
                 </div>
                 
                 <div class="contact-item">
@@ -1455,6 +1486,16 @@
                     </label>
                 </div>
                 <button type="submit" class="submit-btn" id="submitBtn">Solicită Ofertă</button>
+                <!-- reCAPTCHA v3 hidden token -->
+                <input type="hidden" id="recaptchaToken" name="g-recaptcha-response" value="">
+                <!-- Honeypot anti-bot field (extra layer) -->
+                <div class="form-website-url" aria-hidden="true" tabindex="-1">
+                    <label for="website">Website</label>
+                    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                </div>
+                <div class="recaptcha-branding">
+                    Acest site este protejat de reCAPTCHA și se aplică <a href="https://policies.google.com/privacy" target="_blank">Politica de Confidențialitate</a> și <a href="https://policies.google.com/terms" target="_blank">Termenii de Utilizare</a> Google.
+                </div>
                 <div id="formStatus" style="margin-top: 15px; text-align: center; font-size: 14px;"></div>
             </form>
         </div>
@@ -1897,7 +1938,7 @@
                     <h3 style="color: #c9a962; font-size: 16px; margin: 24px 0 12px;">8. Contact</h3>
                     <p style="margin-bottom: 16px;">Pentru orice întrebări sau solicitări privind datele dumneavoastră personale, ne puteți contacta la:</p>
                     <p style="margin-bottom: 16px;">
-                        <strong style="color: #fff;">Email:</strong> contact@e-blat.com<br>
+                        <strong style="color: #fff;">Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="80e3efeef4e1e3f4c0e5ade2ece1f4aee3efed">[email&#160;protected]</a><br>
                         <strong style="color: #fff;">Telefon:</strong> +40 741 300 689<br>
                         <strong style="color: #fff;">Adresă:</strong> Intrarea Roma 3, București
                     </p>
@@ -1921,7 +1962,7 @@
         </div>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Check for success parameter and show modal
         (function() {
             if (window.location.search.indexOf('success=true') !== -1) {
@@ -2655,6 +2696,41 @@
         const submitBtn = document.getElementById('submitBtn');
         const formStatus = document.getElementById('formStatus');
 
+        // reCAPTCHA v3 site key — ÎNLOCUIEȘTE CU CHEIA TA
+        const RECAPTCHA_SITE_KEY = '6LeluX4sAAAAALb7-qrWrTZhWFr8p_36DjSOv-Qf';
+
+        // Intercept form submission
+        offerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // 1. Honeypot check
+            var honeypot = document.getElementById('website');
+            if (honeypot && honeypot.value.length > 0) {
+                formStatus.innerHTML = '<span style="color: #4ecdc4;">✓ Mulțumim! Te vom contacta în curând.</span>';
+                submitBtn.style.display = 'none';
+                return;
+            }
+
+            // 2. Get reCAPTCHA v3 token, then submit
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Se trimite...';
+
+            grecaptcha.ready(function() {
+                grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'submit_offer' }).then(function(token) {
+                    // Set token in hidden field
+                    document.getElementById('recaptchaToken').value = token;
+                    
+                    // Submit the form natively
+                    offerForm.submit();
+                }).catch(function(err) {
+                    console.error('reCAPTCHA error:', err);
+                    formStatus.innerHTML = '<span style="color: #c96262;">Eroare reCAPTCHA. Te rugăm reîncarcă pagina.</span>';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Solicită Ofertă';
+                });
+            });
+        });
+
         // Display selected files
         fileInput.addEventListener('change', function() {
             fileList.innerHTML = '';
@@ -2693,16 +2769,4 @@
             section.style.transform = 'translateY(30px)';
             section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
             observer.observe(section);
-        });
-    </script>
-
-    <!-- Success Modal Script - at the very end -->
-    <script>
-        // This runs after everything is loaded
-        if (window.location.search.indexOf('success=true') !== -1) {
-            document.getElementById('successModal').style.display = 'flex';
-            history.replaceState(null, '', window.location.pathname);
-        }
-    </script>
-</body>
-</html>
+     
