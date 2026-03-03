@@ -456,6 +456,10 @@
             pointer-events: auto;
         }
 
+        .material-content #atlasplanDots {
+            pointer-events: auto;
+        }
+
         .material-content h4 {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.5rem;
@@ -1102,7 +1106,7 @@
         <div class="hero-content">
             <p class="hero-tagline">Viitorul bucătăriei tale</p>
             <h1 class="hero-title">Blaturi Premium cu<br>Inducție Invizibilă</h1>
-            <p class="hero-subtitle">Ceramică de înaltă calitate pentru bucătării moderne. O soluție integrată pentru blaturi premium cu inducție invizibilă, fără compromisuri.</p>
+            <p class="hero-subtitle">Piatră sinterizată de înaltă calitate pentru bucătării moderne. O soluție integrată pentru blaturi premium cu inducție invizibilă, fără compromisuri.</p>
             <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
                 <a href="https://configurator.e-blat.com" class="hero-cta">
                     Configurează Blatul Tău
@@ -1136,9 +1140,25 @@
             <div class="material-card" id="neolithCard" onclick="openMaterialCatalog('neolith')" style="cursor:pointer; position: relative;">
                 <div class="material-bg" id="neolithBg" style="background-image: url('assets/Neolith_AMAZONICO-A-01_resize_-vertical.jpg'); transition: opacity 0.8s ease-in-out; z-index: 0;"></div>
                 <div class="material-content" style="z-index: 2;">
-                    <h4>Ceramică - Neolith</h4>
+                    <h4>Piatră Sinterizată - Neolith</h4>
                     <p id="neolithModelName" style="transition: opacity 0.5s ease-in-out;">Amazonico</p>
+                    <div style="display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; padding: 4px 10px; background: rgba(201,169,98,0.15); border: 1px solid rgba(201,169,98,0.4); border-radius: 20px;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        <span style="color: #c9a962; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 500;">Compatibil inducție invizibilă</span>
+                    </div>
                     <div style="display: flex; gap: 8px; margin-top: 10px;" id="neolithDots"></div>
+                </div>
+            </div>
+            <div class="material-card" id="atlasplanCard" onclick="openMaterialCatalog('atlasplan')" style="cursor:pointer; position: relative;">
+                <div class="material-bg" id="atlasplanBg" style="background-image: url('assets/atlasplan-black_tempest_texture.jpg'); transition: opacity 0.8s ease-in-out; z-index: 0;"></div>
+                <div class="material-content" style="z-index: 2;">
+                    <h4>Piatră Sinterizată - AtlasPlan</h4>
+                    <p id="atlasplanModelName" style="transition: opacity 0.5s ease-in-out;">Black Tempest</p>
+                    <div style="display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; padding: 4px 10px; background: rgba(201,169,98,0.15); border: 1px solid rgba(201,169,98,0.4); border-radius: 20px;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        <span style="color: #c9a962; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 500;">Compatibil inducție invizibilă</span>
+                    </div>
+                    <div style="display: flex; gap: 8px; margin-top: 10px;" id="atlasplanDots"></div>
                 </div>
             </div>
             <div class="material-card" onclick="openMaterialCatalog('quartz')" style="cursor:pointer;">
@@ -1199,8 +1219,8 @@
             </div>
             <div class="tech-content">
                 <h3>Sistem Dual de Gătit și Alimentare</h3>
-                <p>Plita de inducție se montează sub blatul ceramic, oferind două funcții distincte: gătit prin inducție și transmitere de energie electrică wireless către electrocasnicele compatibile.</p>
-                <p>Rezultatul? O bucătărie complet curată, fără cabluri, fără plită vizibilă — doar suprafața elegantă a blatului tău ceramic.</p>
+                <p>Plita de inducție se montează sub blatul din piatră sinterizată, oferind două funcții distincte: gătit prin inducție și transmitere de energie electrică wireless către electrocasnicele compatibile.</p>
+                <p>Rezultatul? O bucătărie complet curată, fără cabluri, fără plită vizibilă — doar suprafața elegantă a blatului tău din piatră sinterizată.</p>
                 
                 <div class="tech-features">
                     <div class="tech-feature">
@@ -1371,7 +1391,7 @@
             
             <div class="about-content">
                 <h3>Măiestrie și Inovație</h3>
-                <p>Cu peste un deceniu de experiență în mobilier la comandă, am decis să aducem în România cea mai avansată tehnologie pentru bucătării: sistemul de inducție invizibilă integrat în blaturi ceramice premium.</p>
+                <p>Cu peste un deceniu de experiență în mobilier la comandă, am decis să aducem în România cea mai avansată tehnologie pentru bucătării: sistemul de inducție invizibilă integrat în blaturi din piatră sinterizată premium.</p>
                 <p>Combinăm expertiza noastră în tâmplărie cu materiale premium și tehnologie de ultimă generație pentru a crea bucătării care nu sunt doar frumoase, ci și inteligente.</p>
                 <p>Sediul nostru este în București, dar livrăm și instalăm în toată România.</p>
                 
@@ -1705,8 +1725,8 @@
             <!-- Modal Header -->
             <div style="padding: 24px 32px; border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
                 <div>
-                    <h2 id="modalTitle" style="color: #fff; font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 400; margin: 0;">Ceramică - Neolith</h2>
-                    <p id="modalDescription" style="color: #888; font-size: 14px; margin: 8px 0 0 0;">Plăci ceramice sinterizate de înaltă performanță</p>
+                    <h2 id="modalTitle" style="color: #fff; font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 400; margin: 0;">Piatră Sinterizată - Neolith</h2>
+                    <p id="modalDescription" style="color: #888; font-size: 14px; margin: 8px 0 0 0;">Plăci sinterizate de înaltă performanță</p>
                 </div>
                 <button onclick="closeMaterialModal()" style="background: none; border: none; color: #888; font-size: 32px; cursor: pointer; line-height: 1;">×</button>
             </div>
@@ -2081,13 +2101,68 @@
         // Initialize on load
         document.addEventListener('DOMContentLoaded', initNeolithSlideshow);
 
+        // AtlasPlan Card Slideshow - Crossfade
+        const atlasplanSlides = [
+            { name: 'Black Tempest', texture: 'assets/atlasplan-black_tempest_texture.jpg' },
+            { name: 'Calacatta Viola', texture: 'assets/atlasplan-calacatta_viola_texture.jpg' },
+            { name: 'Desert Soul', texture: 'assets/atlasplan-desertsoul_texture.jpg' },
+            { name: 'Noce Canaletto', texture: 'assets/atlasplan-noce-canaletto_texture.jpg' }
+        ];
+        let currentAtlasplanSlide = 0;
+
+        function initAtlasplanSlideshow() {
+            const dotsContainer = document.getElementById('atlasplanDots');
+            if (!dotsContainer) return;
+            
+            atlasplanSlides.forEach((_, i) => {
+                const dot = document.createElement('div');
+                dot.style.cssText = `width: 8px; height: 8px; border-radius: 50%; background: ${i === 0 ? '#c9a962' : 'rgba(255,255,255,0.4)'}; transition: background 0.3s; cursor: pointer;`;
+                dot.onclick = (e) => { e.stopPropagation(); goToAtlasplanSlide(i); };
+                dotsContainer.appendChild(dot);
+            });
+            
+            setInterval(() => {
+                currentAtlasplanSlide = (currentAtlasplanSlide + 1) % atlasplanSlides.length;
+                updateAtlasplanSlide();
+            }, 5000);
+        }
+
+        function goToAtlasplanSlide(index) {
+            currentAtlasplanSlide = index;
+            updateAtlasplanSlide();
+        }
+
+        function updateAtlasplanSlide() {
+            const bg = document.getElementById('atlasplanBg');
+            const nameEl = document.getElementById('atlasplanModelName');
+            const dots = document.querySelectorAll('#atlasplanDots > div');
+            
+            if (bg && nameEl) {
+                bg.style.opacity = '0';
+                nameEl.style.opacity = '0';
+                
+                setTimeout(() => {
+                    bg.style.backgroundImage = `url('${atlasplanSlides[currentAtlasplanSlide].texture}')`;
+                    nameEl.textContent = atlasplanSlides[currentAtlasplanSlide].name;
+                    bg.style.opacity = '1';
+                    nameEl.style.opacity = '1';
+                }, 400);
+            }
+            
+            dots.forEach((dot, i) => {
+                dot.style.background = i === currentAtlasplanSlide ? '#c9a962' : 'rgba(255,255,255,0.4)';
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initAtlasplanSlideshow);
+
         // Material Modal Functions - defined first so onclick can use them
         
         // Materials Catalog Data
         const materialsCatalog = {
             neolith: {
-                title: 'Ceramică - Neolith',
-                description: 'Plăci ceramice sinterizate de înaltă performanță',
+                title: 'Piatră Sinterizată - Neolith',
+                description: 'Plăci sinterizate de înaltă performanță',
                 models: [
                     {
                         id: 'amazonico',
@@ -2226,6 +2301,108 @@
                         description: '',
                         specs: {},
                         isConfiguratorCTA: true
+                    }
+                ]
+            },
+            atlasplan: {
+                title: 'Piatră Sinterizată - AtlasPlan',
+                description: 'Suprafețe sinterizate de lux, fabricate în Italia',
+                models: [
+                    {
+                        id: 'black-tempest',
+                        name: 'Black Tempest',
+                        subtitle: 'Negru Furtunos cu Venații Dinamice',
+                        texture: 'assets/atlasplan-black_tempest_texture.jpg',
+                        images: [
+                            'assets/atlasplan-black_tempest_context_1.jpg',
+                            'assets/atlasplan-black_tempest_context_2.jpg',
+                            'assets/atlasplan-black_tempest_context_3.jpg',
+                            'assets/atlasplan-black_tempest_context_4.jpg',
+                            'assets/atlasplan-black_tempest_texture.jpg'
+                        ],
+                        description: 'Un negru profund cu venații albe și gri ce evocă forța naturii. Black Tempest aduce dramatism și eleganță în orice spațiu, fiind perfect pentru bucătării moderne cu caracter puternic, insule impunătoare și placări de perete spectaculoase.',
+                        specs: {
+                            'Producător': 'Atlas Plan (Italia)',
+                            'Dimensiuni placă': '162 × 324 cm',
+                            'Grosimi disponibile': '6 mm, 12 mm, 20 mm',
+                            'Finisaj': 'Silk / Satinat',
+                            'Rezistență la zgârieturi': 'Foarte ridicată (Mohs 7)',
+                            'Rezistență la căldură': 'Până la 300°C direct',
+                            'Compatibil inducție': 'Da - grosime 12mm recomandat',
+                            'Aplicații': 'Blaturi bucătărie, insule, placări pereți, mobilier'
+                        }
+                    },
+                    {
+                        id: 'calacatta-viola',
+                        name: 'Calacatta Viola',
+                        subtitle: 'Marmură Albă cu Venații Violete',
+                        texture: 'assets/atlasplan-calacatta_viola_texture.jpg',
+                        images: [
+                            'assets/atlasplan-calacatta_viola_context_1.jpg',
+                            'assets/atlasplan-calacatta_viola_context_2.jpg',
+                            'assets/atlasplan-calacatta_viola_context_3.jpg',
+                            'assets/atlasplan-calacatta_viola_context_4.jpg',
+                            'assets/atlasplan-calacatta_viola_texture.jpg'
+                        ],
+                        description: 'Inspirat de marmura Calacatta italiană, acest model prezintă un fundal alb luminos cu venații dramatice violet-gri. Alegerea perfectă pentru bucătării de lux, insule spectaculoase și chiuvete integrate — un statement vizual puternic și rafinat.',
+                        specs: {
+                            'Producător': 'Atlas Plan (Italia)',
+                            'Dimensiuni placă': '162 × 324 cm',
+                            'Grosimi disponibile': '6 mm, 12 mm, 20 mm',
+                            'Finisaj': 'Silk / Satinat',
+                            'Rezistență la zgârieturi': 'Foarte ridicată (Mohs 7)',
+                            'Rezistență la căldură': 'Până la 300°C direct',
+                            'Compatibil inducție': 'Da - grosime 12mm recomandat',
+                            'Aplicații': 'Blaturi bucătărie, insule, chiuvete integrate, backsplash'
+                        }
+                    },
+                    {
+                        id: 'desert-soul',
+                        name: 'Desert Soul',
+                        subtitle: 'Tonuri Calde de Deșert și Auriu',
+                        texture: 'assets/atlasplan-desertsoul_texture.jpg',
+                        images: [
+                            'assets/atlasplan-desertsoul_context_1.jpg',
+                            'assets/atlasplan-desertsoul_context_2.jpg',
+                            'assets/atlasplan-desertsoul_context_3.jpg',
+                            'assets/atlasplan-desertsoul_context_4.jpg',
+                            'assets/atlasplan-desertsoul_texture.jpg'
+                        ],
+                        description: 'Un design unic ce combină tonuri calde de bej, auriu și accente dramatice întunecate, evocând peisajele deșertice. Desert Soul este ideal pentru mese de dining elegante, placări de perete statement și interioare contemporane care doresc căldură și rafinament.',
+                        specs: {
+                            'Producător': 'Atlas Plan (Italia)',
+                            'Dimensiuni placă': '162 × 324 cm',
+                            'Grosimi disponibile': '6 mm, 12 mm, 20 mm',
+                            'Finisaj': 'Silk / Satinat',
+                            'Rezistență la zgârieturi': 'Foarte ridicată (Mohs 7)',
+                            'Rezistență la căldură': 'Până la 300°C direct',
+                            'Compatibil inducție': 'Da - grosime 12mm recomandat',
+                            'Aplicații': 'Mese dining, placări pereți, mobilier, blaturi'
+                        }
+                    },
+                    {
+                        id: 'noce-canaletto',
+                        name: 'Noce Canaletto',
+                        subtitle: 'Efect Lemn de Nuc Natural',
+                        texture: 'assets/atlasplan-noce-canaletto_texture.jpg',
+                        images: [
+                            'assets/atlasplan-noce-canaletto_context_1.jpg',
+                            'assets/atlasplan-noce-canaletto_context_2.jpg',
+                            'assets/atlasplan-noce-canaletto_context_3.jpg',
+                            'assets/atlasplan-noce-canaletto_context_4.jpg',
+                            'assets/atlasplan-noce-canaletto_texture.jpg'
+                        ],
+                        description: 'Reproducerea fidelă a lemnului de nuc Canaletto într-o piatră sinterizată de înaltă performanță. Noce Canaletto oferă căldura și textura lemnului natural cu durabilitatea și rezistența unei suprafețe ceramice — perfect pentru placări de perete, dormitoare și băi luxoase.',
+                        specs: {
+                            'Producător': 'Atlas Plan (Italia)',
+                            'Dimensiuni placă': '162 × 324 cm',
+                            'Grosimi disponibile': '6 mm, 12 mm, 20 mm',
+                            'Finisaj': 'Natural / Silk',
+                            'Rezistență la zgârieturi': 'Foarte ridicată (Mohs 7)',
+                            'Rezistență la căldură': 'Până la 300°C direct',
+                            'Compatibil inducție': 'Da - grosime 12mm recomandat',
+                            'Aplicații': 'Placări pereți, dormitoare, băi, mobilier'
+                        }
                     }
                 ]
             },
