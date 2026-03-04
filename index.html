@@ -140,10 +140,13 @@
 
         .hero-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
             font-weight: 300;
             line-height: 1.1;
             margin-bottom: 1.5rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
             opacity: 0;
             animation: fadeInUp 1s ease 0.5s forwards;
         }
@@ -1113,7 +1116,7 @@
         <div class="hero-bg"></div>
         <div class="hero-content">
             <p class="hero-tagline">Viitorul bucătăriei tale</p>
-            <h1 class="hero-title">Blaturi Premium cu<br>Inducție Invizibilă</h1>
+            <h1 class="hero-title">Sisteme de Inducție<br>Ascunse Sub Blaturi Premium</h1>
             <p class="hero-subtitle">Piatră sinterizată de înaltă calitate pentru bucătării moderne. O soluție integrată pentru blaturi premium cu inducție invizibilă, fără compromisuri.</p>
             <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
                 <a href="https://configurator.e-blat.com" class="hero-cta">
@@ -1135,101 +1138,6 @@
             <div class="scroll-line"></div>
         </div>
     </section>
-
-    <!-- Materials Section -->
-    <section id="materials" class="materials-section">
-        <div class="section-header">
-            <p class="section-label">Materiale Premium</p>
-            <h2 class="section-title">Suprafețe de Excepție</h2>
-            <p class="section-desc">Lucrăm doar cu materiale de top, alese pentru durabilitate, estetică și compatibilitate perfectă cu tehnologia de inducție invizibilă. De asemenea, vă putem furniza soluții de blaturi fără inducție — din oricare dintre materialele disponibile.</p>
-        </div>
-        
-        <div class="materials-grid">
-            <div class="material-card" id="neolithCard" onclick="openMaterialCatalog('neolith')" style="cursor:pointer; position: relative;">
-                <div class="material-bg" id="neolithBg" style="background-image: url('assets/Neolith_AMAZONICO-A-01_resize_-vertical.jpg'); transition: opacity 0.8s ease-in-out; z-index: 0;"></div>
-                <div class="material-content" style="z-index: 2;">
-                    <div style="text-align: center;">
-                        <h4>Neolith</h4>
-                        <div style="display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; padding: 4px 10px; background: rgba(201,169,98,0.15); border: 1px solid rgba(201,169,98,0.4); border-radius: 20px;">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                            <span style="color: #c9a962; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 500;">Compatibil inducție invizibilă</span>
-                        </div>
-                    </div>
-                    <div style="text-align: center;">
-                        <p id="neolithModelName" style="transition: opacity 0.5s ease-in-out;">Amazonico</p>
-                        <div style="display: flex; gap: 8px; margin-top: 10px; justify-content: center;" id="neolithDots"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="material-card" id="atlasplanCard" onclick="openMaterialCatalog('atlasplan')" style="cursor:pointer; position: relative;">
-                <div class="material-bg" id="atlasplanBg" style="background-image: url('assets/atlasplan-black_tempest_texture.jpg'); transition: opacity 0.8s ease-in-out; z-index: 0;"></div>
-                <div class="material-content" style="z-index: 2;">
-                    <div style="text-align: center;">
-                        <h4>AtlasPlan</h4>
-                        <div style="display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; padding: 4px 10px; background: rgba(201,169,98,0.15); border: 1px solid rgba(201,169,98,0.4); border-radius: 20px;">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                            <span style="color: #c9a962; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 500;">Compatibil inducție invizibilă</span>
-                        </div>
-                    </div>
-                    <div style="text-align: center;">
-                        <p id="atlasplanModelName" style="transition: opacity 0.5s ease-in-out;">Black Tempest</p>
-                        <div style="display: flex; gap: 8px; margin-top: 10px; justify-content: center;" id="atlasplanDots"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="material-card" id="silestoneCard" onclick="openMaterialCatalog('silestone')" style="cursor:pointer; position: relative;">
-                <div class="material-bg" id="silestoneBg" style="background-image: url('assets/silestone-pietra_texture.jpg'); transition: opacity 0.8s ease-in-out; z-index: 0;"></div>
-                <div class="material-content" style="z-index: 2;">
-                    <div style="text-align: center;">
-                        <h4>Silestone</h4>
-                    </div>
-                    <div style="text-align: center;">
-                        <p id="silestoneModelName" style="transition: opacity 0.5s ease-in-out;">Pietra</p>
-                        <div style="display: flex; gap: 8px; margin-top: 10px; justify-content: center;" id="silestoneDots"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="material-card" onclick="openMaterialCatalog('composite')" style="cursor:pointer;">
-                <div class="material-bg" style="background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #333 100%);"></div>
-                <div class="material-content">
-                    <div style="text-align: center;">
-                        <h4>Compozit</h4>
-                    </div>
-                    <div style="text-align: center;">
-                        <p>Materiale compozite durabile și versatile</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section id="how" class="how-section">
-        <div class="section-header">
-            <p class="section-label">Proces Simplu</p>
-            <h2 class="section-title">Cum Funcționează</h2>
-            <p class="section-desc">De la concept la bucătăria ta, în trei pași simpli.</p>
-        </div>
-        
-        <div class="how-steps">
-            <div class="how-step">
-                <div class="step-number">01</div>
-                <h4>Configurare</h4>
-                <p>Alegi dimensiunile, materialul și numărul de zone de gătit. Te ajutăm să găsești soluția perfectă pentru spațiul tău.</p>
-            </div>
-            <div class="how-step">
-                <div class="step-number">02</div>
-                <h4>Producție</h4>
-                <p>Blatul este fabricat la comandă din materialele premium alese. Sistemul de inducție este pregătit pentru integrare.</p>
-            </div>
-            <div class="how-step">
-                <div class="step-number">03</div>
-                <h4>Instalare</h4>
-                <p>Echipa noastră montează blatul și sistemul de inducție. Configurăm totul și îți explicăm funcționarea.</p>
-            </div>
-        </div>
-    </section>
-
     <!-- Technology Section -->
     <section id="technology" class="tech-section">
         <div class="section-header">
@@ -1332,6 +1240,7 @@
         </div>
     </section>
 
+
     <!-- Appliances Section -->
     <section id="appliances" class="appliances-section" style="padding: 100px 5%; background: linear-gradient(180deg, #0a0a0a 0%, #111 100%);">
         <div class="section-header">
@@ -1392,6 +1301,99 @@
         </div>
     </section>
 
+    <!-- Materials Section -->
+    <section id="materials" class="materials-section">
+        <div class="section-header">
+            <p class="section-label">Materiale Premium</p>
+            <h2 class="section-title">Suprafețe de Excepție</h2>
+            <p class="section-desc">Lucrăm doar cu materiale de top, alese pentru durabilitate, estetică și compatibilitate perfectă cu tehnologia de inducție invizibilă. De asemenea, vă putem furniza soluții de blaturi fără inducție — din oricare dintre materialele disponibile.</p>
+        </div>
+        
+        <div class="materials-grid">
+            <div class="material-card" id="neolithCard" onclick="openMaterialCatalog('neolith')" style="cursor:pointer; position: relative;">
+                <div class="material-bg" id="neolithBg" style="background-image: url('assets/Neolith_AMAZONICO-A-01_resize_-vertical.jpg'); transition: opacity 0.8s ease-in-out; z-index: 0;"></div>
+                <div class="material-content" style="z-index: 2;">
+                    <div style="text-align: center;">
+                        <h4>Neolith</h4>
+                        <div style="display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; padding: 4px 10px; background: rgba(201,169,98,0.15); border: 1px solid rgba(201,169,98,0.4); border-radius: 20px;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                            <span style="color: #c9a962; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 500;">Compatibil inducție invizibilă</span>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <p id="neolithModelName" style="transition: opacity 0.5s ease-in-out;">Amazonico</p>
+                        <div style="display: flex; gap: 8px; margin-top: 10px; justify-content: center;" id="neolithDots"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="material-card" id="atlasplanCard" onclick="openMaterialCatalog('atlasplan')" style="cursor:pointer; position: relative;">
+                <div class="material-bg" id="atlasplanBg" style="background-image: url('assets/atlasplan-black_tempest_texture.jpg'); transition: opacity 0.8s ease-in-out; z-index: 0;"></div>
+                <div class="material-content" style="z-index: 2;">
+                    <div style="text-align: center;">
+                        <h4>AtlasPlan</h4>
+                        <div style="display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; padding: 4px 10px; background: rgba(201,169,98,0.15); border: 1px solid rgba(201,169,98,0.4); border-radius: 20px;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                            <span style="color: #c9a962; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 500;">Compatibil inducție invizibilă</span>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <p id="atlasplanModelName" style="transition: opacity 0.5s ease-in-out;">Black Tempest</p>
+                        <div style="display: flex; gap: 8px; margin-top: 10px; justify-content: center;" id="atlasplanDots"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="material-card" id="silestoneCard" onclick="openMaterialCatalog('silestone')" style="cursor:pointer; position: relative;">
+                <div class="material-bg" id="silestoneBg" style="background-image: url('assets/silestone-pietra_texture.jpg'); transition: opacity 0.8s ease-in-out; z-index: 0;"></div>
+                <div class="material-content" style="z-index: 2;">
+                    <div style="text-align: center;">
+                        <h4>Silestone</h4>
+                    </div>
+                    <div style="text-align: center;">
+                        <p id="silestoneModelName" style="transition: opacity 0.5s ease-in-out;">Pietra</p>
+                        <div style="display: flex; gap: 8px; margin-top: 10px; justify-content: center;" id="silestoneDots"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="material-card" onclick="openMaterialCatalog('composite')" style="cursor:pointer;">
+                <div class="material-bg" style="background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #333 100%);"></div>
+                <div class="material-content">
+                    <div style="text-align: center;">
+                        <h4>Compozit</h4>
+                    </div>
+                    <div style="text-align: center;">
+                        <p>Materiale compozite durabile și versatile</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how" class="how-section">
+        <div class="section-header">
+            <p class="section-label">Proces Simplu</p>
+            <h2 class="section-title">Cum Funcționează</h2>
+            <p class="section-desc">De la concept la bucătăria ta, în trei pași simpli.</p>
+        </div>
+        
+        <div class="how-steps">
+            <div class="how-step">
+                <div class="step-number">01</div>
+                <h4>Configurare</h4>
+                <p>Alegi dimensiunile, materialul și numărul de zone de gătit. Te ajutăm să găsești soluția perfectă pentru spațiul tău.</p>
+            </div>
+            <div class="how-step">
+                <div class="step-number">02</div>
+                <h4>Producție</h4>
+                <p>Blatul este fabricat la comandă din materialele premium alese. Sistemul de inducție este pregătit pentru integrare.</p>
+            </div>
+            <div class="how-step">
+                <div class="step-number">03</div>
+                <h4>Instalare</h4>
+                <p>Echipa noastră montează blatul și sistemul de inducție. Configurăm totul și îți explicăm funcționarea.</p>
+            </div>
+        </div>
+    </section>
     <!-- About Section -->
     <section id="about" class="about-section">
         <div class="about-grid">
