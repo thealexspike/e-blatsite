@@ -444,12 +444,16 @@
 
         .material-content {
             position: absolute;
+            top: 0;
             bottom: 0;
             left: 0;
             right: 0;
             padding: 2rem;
             z-index: 2;
             pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .material-content #neolithDots {
@@ -467,7 +471,7 @@
         .material-content h4 {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0;
         }
 
         .material-content p {
@@ -1144,40 +1148,56 @@
             <div class="material-card" id="neolithCard" onclick="openMaterialCatalog('neolith')" style="cursor:pointer; position: relative;">
                 <div class="material-bg" id="neolithBg" style="background-image: url('assets/Neolith_AMAZONICO-A-01_resize_-vertical.jpg'); transition: opacity 0.8s ease-in-out; z-index: 0;"></div>
                 <div class="material-content" style="z-index: 2;">
-                    <h4>Neolith</h4>
-                    <p id="neolithModelName" style="transition: opacity 0.5s ease-in-out;">Amazonico</p>
-                    <div style="display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; padding: 4px 10px; background: rgba(201,169,98,0.15); border: 1px solid rgba(201,169,98,0.4); border-radius: 20px;">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                        <span style="color: #c9a962; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 500;">Compatibil inducție invizibilă</span>
+                    <div style="text-align: center;">
+                        <h4>Neolith</h4>
+                        <div style="display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; padding: 4px 10px; background: rgba(201,169,98,0.15); border: 1px solid rgba(201,169,98,0.4); border-radius: 20px;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                            <span style="color: #c9a962; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 500;">Compatibil inducție invizibilă</span>
+                        </div>
                     </div>
-                    <div style="display: flex; gap: 8px; margin-top: 10px;" id="neolithDots"></div>
+                    <div style="text-align: center;">
+                        <p id="neolithModelName" style="transition: opacity 0.5s ease-in-out;">Amazonico</p>
+                        <div style="display: flex; gap: 8px; margin-top: 10px; justify-content: center;" id="neolithDots"></div>
+                    </div>
                 </div>
             </div>
             <div class="material-card" id="atlasplanCard" onclick="openMaterialCatalog('atlasplan')" style="cursor:pointer; position: relative;">
                 <div class="material-bg" id="atlasplanBg" style="background-image: url('assets/atlasplan-black_tempest_texture.jpg'); transition: opacity 0.8s ease-in-out; z-index: 0;"></div>
                 <div class="material-content" style="z-index: 2;">
-                    <h4>AtlasPlan</h4>
-                    <p id="atlasplanModelName" style="transition: opacity 0.5s ease-in-out;">Black Tempest</p>
-                    <div style="display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; padding: 4px 10px; background: rgba(201,169,98,0.15); border: 1px solid rgba(201,169,98,0.4); border-radius: 20px;">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                        <span style="color: #c9a962; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 500;">Compatibil inducție invizibilă</span>
+                    <div style="text-align: center;">
+                        <h4>AtlasPlan</h4>
+                        <div style="display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; padding: 4px 10px; background: rgba(201,169,98,0.15); border: 1px solid rgba(201,169,98,0.4); border-radius: 20px;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                            <span style="color: #c9a962; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 500;">Compatibil inducție invizibilă</span>
+                        </div>
                     </div>
-                    <div style="display: flex; gap: 8px; margin-top: 10px;" id="atlasplanDots"></div>
+                    <div style="text-align: center;">
+                        <p id="atlasplanModelName" style="transition: opacity 0.5s ease-in-out;">Black Tempest</p>
+                        <div style="display: flex; gap: 8px; margin-top: 10px; justify-content: center;" id="atlasplanDots"></div>
+                    </div>
                 </div>
             </div>
             <div class="material-card" id="silestoneCard" onclick="openMaterialCatalog('silestone')" style="cursor:pointer; position: relative;">
                 <div class="material-bg" id="silestoneBg" style="background-image: url('assets/silestone-pietra_texture.jpg'); transition: opacity 0.8s ease-in-out; z-index: 0;"></div>
                 <div class="material-content" style="z-index: 2;">
-                    <h4>Silestone</h4>
-                    <p id="silestoneModelName" style="transition: opacity 0.5s ease-in-out;">Pietra</p>
-                    <div style="display: flex; gap: 8px; margin-top: 10px;" id="silestoneDots"></div>
+                    <div style="text-align: center;">
+                        <h4>Silestone</h4>
+                    </div>
+                    <div style="text-align: center;">
+                        <p id="silestoneModelName" style="transition: opacity 0.5s ease-in-out;">Pietra</p>
+                        <div style="display: flex; gap: 8px; margin-top: 10px; justify-content: center;" id="silestoneDots"></div>
+                    </div>
                 </div>
             </div>
             <div class="material-card" onclick="openMaterialCatalog('composite')" style="cursor:pointer;">
                 <div class="material-bg" style="background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #333 100%);"></div>
                 <div class="material-content">
-                    <h4>Compozit</h4>
-                    <p>Materiale compozite durabile și versatile</p>
+                    <div style="text-align: center;">
+                        <h4>Compozit</h4>
+                    </div>
+                    <div style="text-align: center;">
+                        <p>Materiale compozite durabile și versatile</p>
+                    </div>
                 </div>
             </div>
         </div>
