@@ -460,6 +460,10 @@
             pointer-events: auto;
         }
 
+        .material-content #silestoneDots {
+            pointer-events: auto;
+        }
+
         .material-content h4 {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.5rem;
@@ -1140,7 +1144,7 @@
             <div class="material-card" id="neolithCard" onclick="openMaterialCatalog('neolith')" style="cursor:pointer; position: relative;">
                 <div class="material-bg" id="neolithBg" style="background-image: url('assets/Neolith_AMAZONICO-A-01_resize_-vertical.jpg'); transition: opacity 0.8s ease-in-out; z-index: 0;"></div>
                 <div class="material-content" style="z-index: 2;">
-                    <h4>Neolith - Piatră Sinterizată</h4>
+                    <h4>Neolith</h4>
                     <p id="neolithModelName" style="transition: opacity 0.5s ease-in-out;">Amazonico</p>
                     <div style="display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; padding: 4px 10px; background: rgba(201,169,98,0.15); border: 1px solid rgba(201,169,98,0.4); border-radius: 20px;">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
@@ -1152,7 +1156,7 @@
             <div class="material-card" id="atlasplanCard" onclick="openMaterialCatalog('atlasplan')" style="cursor:pointer; position: relative;">
                 <div class="material-bg" id="atlasplanBg" style="background-image: url('assets/atlasplan-black_tempest_texture.jpg'); transition: opacity 0.8s ease-in-out; z-index: 0;"></div>
                 <div class="material-content" style="z-index: 2;">
-                    <h4>AtlasPlan - Piatră Sinterizată</h4>
+                    <h4>AtlasPlan</h4>
                     <p id="atlasplanModelName" style="transition: opacity 0.5s ease-in-out;">Black Tempest</p>
                     <div style="display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; padding: 4px 10px; background: rgba(201,169,98,0.15); border: 1px solid rgba(201,169,98,0.4); border-radius: 20px;">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
@@ -1161,11 +1165,12 @@
                     <div style="display: flex; gap: 8px; margin-top: 10px;" id="atlasplanDots"></div>
                 </div>
             </div>
-            <div class="material-card" onclick="openMaterialCatalog('quartz')" style="cursor:pointer;">
-                <div class="material-bg" style="background: linear-gradient(135deg, #e8e4dd 0%, #d4cfc5 50%, #c9c4ba 100%);"></div>
-                <div class="material-content">
-                    <h4>Quartz</h4>
-                    <p>Suprafețe din cuarț natural reconstituit</p>
+            <div class="material-card" id="silestoneCard" onclick="openMaterialCatalog('silestone')" style="cursor:pointer; position: relative;">
+                <div class="material-bg" id="silestoneBg" style="background-image: url('assets/silestone-pietra_texture.jpg'); transition: opacity 0.8s ease-in-out; z-index: 0;"></div>
+                <div class="material-content" style="z-index: 2;">
+                    <h4>Silestone</h4>
+                    <p id="silestoneModelName" style="transition: opacity 0.5s ease-in-out;">Pietra</p>
+                    <div style="display: flex; gap: 8px; margin-top: 10px;" id="silestoneDots"></div>
                 </div>
             </div>
             <div class="material-card" onclick="openMaterialCatalog('composite')" style="cursor:pointer;">
@@ -2156,6 +2161,59 @@
 
         document.addEventListener('DOMContentLoaded', initAtlasplanSlideshow);
 
+        // Silestone Card Slideshow - Crossfade
+        const silestoneSlides = [
+            { name: 'Pietra', texture: 'assets/silestone-pietra_texture.jpg' },
+            { name: 'Et Marquina', texture: 'assets/silestone-et_marquina_texture.jpg' }
+        ];
+        let currentSilestoneSlide = 0;
+
+        function initSilestoneSlideshow() {
+            const dotsContainer = document.getElementById('silestoneDots');
+            if (!dotsContainer) return;
+            
+            silestoneSlides.forEach((_, i) => {
+                const dot = document.createElement('div');
+                dot.style.cssText = `width: 8px; height: 8px; border-radius: 50%; background: ${i === 0 ? '#c9a962' : 'rgba(255,255,255,0.4)'}; transition: background 0.3s; cursor: pointer;`;
+                dot.onclick = (e) => { e.stopPropagation(); goToSilestoneSlide(i); };
+                dotsContainer.appendChild(dot);
+            });
+            
+            setInterval(() => {
+                currentSilestoneSlide = (currentSilestoneSlide + 1) % silestoneSlides.length;
+                updateSilestoneSlide();
+            }, 4500);
+        }
+
+        function goToSilestoneSlide(index) {
+            currentSilestoneSlide = index;
+            updateSilestoneSlide();
+        }
+
+        function updateSilestoneSlide() {
+            const bg = document.getElementById('silestoneBg');
+            const nameEl = document.getElementById('silestoneModelName');
+            const dots = document.querySelectorAll('#silestoneDots > div');
+            
+            if (bg && nameEl) {
+                bg.style.opacity = '0';
+                nameEl.style.opacity = '0';
+                
+                setTimeout(() => {
+                    bg.style.backgroundImage = `url('${silestoneSlides[currentSilestoneSlide].texture}')`;
+                    nameEl.textContent = silestoneSlides[currentSilestoneSlide].name;
+                    bg.style.opacity = '1';
+                    nameEl.style.opacity = '1';
+                }, 400);
+            }
+            
+            dots.forEach((dot, i) => {
+                dot.style.background = i === currentSilestoneSlide ? '#c9a962' : 'rgba(255,255,255,0.4)';
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initSilestoneSlideshow);
+
         // Material Modal Functions - defined first so onclick can use them
         
         // Materials Catalog Data
@@ -2305,8 +2363,8 @@
                 ]
             },
             atlasplan: {
-                title: 'AtlasPlan - Piatră Sinterizată',
-                description: 'Suprafețe sinterizate de lux, fabricate în Italia',
+                title: 'AtlasPlan - Plăci Ceramice',
+                description: 'Gresie porțelanată de lux, fabricată în Italia prin proces de sinterizare la temperaturi înalte',
                 models: [
                     {
                         id: 'black-tempest',
@@ -2406,18 +2464,54 @@
                     }
                 ]
             },
-            quartz: {
-                title: 'Quartz',
-                description: 'Suprafețe din cuarț natural reconstituit',
+            silestone: {
+                title: 'Silestone - Quartz',
+                description: 'Suprafață inovativă, hibridă, creată din minerale premium, cuarț și materiale reciclate — tehnologia HybriQ®',
                 models: [
                     {
-                        id: 'coming-soon',
-                        name: 'În curând',
-                        subtitle: 'Catalog în pregătire',
-                        texture: '',
-                        images: [],
-                        description: 'Catalogul de quartz este în curs de actualizare. Contactează-ne pentru opțiunile disponibile.',
-                        specs: {}
+                        id: 'pietra',
+                        name: 'Pietra',
+                        subtitle: 'Quartz Alb cu Venații Delicate',
+                        texture: 'assets/silestone-pietra_texture.jpg',
+                        images: [
+                            'assets/silestone-pietra_texture.jpg',
+                            'assets/silestone-pietra_context_1.jpg',
+                            'assets/silestone-pietra_context_2.jpg'
+                        ],
+                        description: 'Silestone Pietra este o suprafață quartz hibridă cu tonuri albe și venații delicate gri-albăstrui, ce recreează aspectul pietrei naturale. Fabricat cu tehnologia HybriQ® din minerale premium, cuarț și materiale reciclate (sticlă, porțelan).<br><br>Tehnologia <strong>N-Boost</strong> oferă proprietăți hidrofobe surprinzătoare, rezistență extraordinară la pete și un nivel ridicat de strălucire și reflectare a luminii.<br><br><strong>Avantaje:</strong><br>• Material hidrofob — zero porozitate, nu îmbibă lichidele<br>• Rezistent la zgârieturi, pete, acizi, șocuri mecanice, decolorare<br>• Curățare ușoară — doar cu o lavetă, fără soluții speciale<br>• Suprafață antibacteriană — unica piatră cu sistem intern activ de protecție<br>• Varietate de culori, dimensiuni, grosimi și finisaje<br><br><strong>Aplicabilitate:</strong> blaturi și brâuri bucătărie/baie, placare pereți, trepte interior, placare pardoseală, pervazuri.',
+                        specs: {
+                            'Producător': 'Cosentino — Silestone (Spania)',
+                            'Material': 'Quartz hibrid — tehnologia HybriQ®',
+                            'Garanție': '25 ani',
+                            'Dimensiuni Jumbo': '325 × 159 cm',
+                            'Dimensiuni Standard': '306 × 140 cm',
+                            'Grosimi disponibile': '1.2 cm, 2.0 cm, 3.0 cm',
+                            'Texturi': 'Lustruit (Polished), Catifelat (Suede)',
+                            'Proprietăți': 'Hidrofob, zero porozitate, antibacterian, rezistent la pete și zgârieturi'
+                        }
+                    },
+                    {
+                        id: 'et-marquina',
+                        name: 'Et Marquina',
+                        subtitle: 'Negru Intens cu Venații Albe',
+                        texture: 'assets/silestone-et_marquina_texture.jpg',
+                        images: [
+                            'assets/silestone-et_marquina_texture.jpg',
+                            'assets/silestone-et_marquina_context_1.jpg',
+                            'assets/silestone-et_marquina_context_2.jpg',
+                            'assets/silestone-et_marquina_context_3.jpg'
+                        ],
+                        description: 'Silestone Et Marquina este un quartz hibrid cu un negru profund, brăzdat de venații albe dramatice, inspirat de celebra marmură Nero Marquina. Fabricat cu tehnologia HybriQ® din minerale premium, cuarț și materiale reciclate (sticlă, porțelan).<br><br>Tehnologia <strong>N-Boost</strong> oferă proprietăți hidrofobe surprinzătoare, rezistență extraordinară la pete și un nivel ridicat de strălucire și reflectare a luminii.<br><br><strong>Avantaje:</strong><br>• Material hidrofob — zero porozitate, nu îmbibă lichidele<br>• Rezistent la zgârieturi, pete, acizi, șocuri mecanice, decolorare<br>• Curățare ușoară — doar cu o lavetă, fără soluții speciale<br>• Suprafață antibacteriană — unica piatră cu sistem intern activ de protecție<br>• Varietate de culori, dimensiuni, grosimi și finisaje<br><br><strong>Aplicabilitate:</strong> blaturi și brâuri bucătărie/baie, placare pereți, trepte interior, placare pardoseală, pervazuri.',
+                        specs: {
+                            'Producător': 'Cosentino — Silestone (Spania)',
+                            'Material': 'Quartz hibrid — tehnologia HybriQ®',
+                            'Garanție': '25 ani',
+                            'Dimensiuni Jumbo': '325 × 159 cm',
+                            'Dimensiuni Standard': '306 × 140 cm',
+                            'Grosimi disponibile': '1.2 cm, 2.0 cm, 3.0 cm',
+                            'Texturi': 'Lustruit (Polished), Catifelat (Suede)',
+                            'Proprietăți': 'Hidrofob, zero porozitate, antibacterian, rezistent la pete și zgârieturi'
+                        }
                     }
                 ]
             },
