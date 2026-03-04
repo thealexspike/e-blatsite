@@ -2031,33 +2031,89 @@
         })();
 
         // Neolith Card Slideshow - Crossfade
-        const neolithSlides = [
-            { name: 'Amazonico', texture: 'assets/Neolith_AMAZONICO-A-01_resize_-vertical.jpg' },
-            { name: 'Calacatta Gold', texture: 'assets/Neolith_Calacatta_Gold.jpg' },
-            { name: 'Iron Corten', texture: 'assets/Neolith_Iron_Corten.jpg' },
-            { name: 'Niagara', texture: 'assets/NIAGARA.jpg' },
-            { name: 'Arabesque', texture: 'assets/ARABESQUE.jpg' }
-        ];
-        let currentNeolithSlide = 0;
+        // Unified Card Slideshow - All cards change simultaneously
+        const cardSlideshows = {
+            neolith: {
+                slides: [
+                    { name: 'Amazonico', texture: 'assets/Neolith_AMAZONICO-A-01_resize_-vertical.jpg' },
+                    { name: 'Calacatta Gold', texture: 'assets/Neolith_Calacatta_Gold.jpg' },
+                    { name: 'Iron Corten', texture: 'assets/Neolith_Iron_Corten.jpg' },
+                    { name: 'Niagara', texture: 'assets/NIAGARA.jpg' },
+                    { name: 'Arabesque', texture: 'assets/ARABESQUE.jpg' }
+                ],
+                current: 0,
+                bgId: 'neolithBg', nameId: 'neolithModelName', dotsId: 'neolithDots'
+            },
+            atlasplan: {
+                slides: [
+                    { name: 'Black Tempest', texture: 'assets/atlasplan-black_tempest_texture.jpg' },
+                    { name: 'Calacatta Viola', texture: 'assets/atlasplan-calacatta_viola_texture.jpg' },
+                    { name: 'Desert Soul', texture: 'assets/atlasplan-desertsoul_texture.jpg' },
+                    { name: 'Noce Canaletto', texture: 'assets/atlasplan-noce-canaletto_texture.jpg' }
+                ],
+                current: 0,
+                bgId: 'atlasplanBg', nameId: 'atlasplanModelName', dotsId: 'atlasplanDots'
+            },
+            silestone: {
+                slides: [
+                    { name: 'Pietra', texture: 'assets/silestone-pietra_texture.jpg' },
+                    { name: 'Et Marquina', texture: 'assets/silestone-et_marquina_texture.jpg' }
+                ],
+                current: 0,
+                bgId: 'silestoneBg', nameId: 'silestoneModelName', dotsId: 'silestoneDots'
+            }
+        };
 
-        function initNeolithSlideshow() {
-            const dotsContainer = document.getElementById('neolithDots');
-            if (!dotsContainer) return;
-            
-            // Create dots
-            neolithSlides.forEach((_, i) => {
-                const dot = document.createElement('div');
-                dot.style.cssText = `width: 8px; height: 8px; border-radius: 50%; background: ${i === 0 ? '#c9a962' : 'rgba(255,255,255,0.4)'}; transition: background 0.3s; cursor: pointer;`;
-                dot.onclick = (e) => { e.stopPropagation(); goToNeolithSlide(i); };
-                dotsContainer.appendChild(dot);
+        function initAllSlideshows() {
+            Object.keys(cardSlideshows).forEach(key => {
+                const show = cardSlideshows[key];
+                const dotsContainer = document.getElementById(show.dotsId);
+                if (!dotsContainer) return;
+                show.slides.forEach((_, i) => {
+                    const dot = document.createElement('div');
+                    dot.style.cssText = `width: 8px; height: 8px; border-radius: 50%; background: ${i === 0 ? '#c9a962' : 'rgba(255,255,255,0.4)'}; transition: background 0.3s; cursor: pointer;`;
+                    dot.onclick = (e) => { e.stopPropagation(); goToCardSlide(key, i); };
+                    dotsContainer.appendChild(dot);
+                });
             });
-            
-            // Auto-advance every 4 seconds
+
             setInterval(() => {
-                currentNeolithSlide = (currentNeolithSlide + 1) % neolithSlides.length;
-                updateNeolithSlide();
-            }, 4000);
+                Object.keys(cardSlideshows).forEach(key => {
+                    const show = cardSlideshows[key];
+                    show.current = (show.current + 1) % show.slides.length;
+                    updateCardSlide(key);
+                });
+            }, 5000);
         }
+
+        function goToCardSlide(key, index) {
+            cardSlideshows[key].current = index;
+            updateCardSlide(key);
+        }
+
+        function updateCardSlide(key) {
+            const show = cardSlideshows[key];
+            const bg = document.getElementById(show.bgId);
+            const nameEl = document.getElementById(show.nameId);
+            const dots = document.querySelectorAll('#' + show.dotsId + ' > div');
+
+            if (bg && nameEl) {
+                bg.style.opacity = '0';
+                nameEl.style.opacity = '0';
+                setTimeout(() => {
+                    bg.style.backgroundImage = `url('${show.slides[show.current].texture}')`;
+                    nameEl.textContent = show.slides[show.current].name;
+                    bg.style.opacity = '1';
+                    nameEl.style.opacity = '1';
+                }, 400);
+            }
+
+            dots.forEach((dot, i) => {
+                dot.style.background = i === show.current ? '#c9a962' : 'rgba(255,255,255,0.4)';
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initAllSlideshows);
 
         // Phone reveal function for security
         function revealPhone() {
@@ -2084,7 +2140,6 @@
                 const footerTop = footer ? footer.getBoundingClientRect().top : window.innerHeight + 100;
                 const windowHeight = window.innerHeight;
                 
-                // Show only after hero AND not when contact section or footer is visible
                 if (scrolled > heroHeight - 100 && contactTop > windowHeight && footerTop > windowHeight) {
                     floatingBtn.classList.add('visible');
                 } else {
@@ -2092,147 +2147,6 @@
                 }
             }
         });
-
-        function goToNeolithSlide(index) {
-            currentNeolithSlide = index;
-            updateNeolithSlide();
-        }
-
-        function updateNeolithSlide() {
-            const bg = document.getElementById('neolithBg');
-            const nameEl = document.getElementById('neolithModelName');
-            const dots = document.querySelectorAll('#neolithDots > div');
-            
-            if (bg && nameEl) {
-                // Fade out
-                bg.style.opacity = '0';
-                nameEl.style.opacity = '0';
-                
-                setTimeout(() => {
-                    bg.style.backgroundImage = `url('${neolithSlides[currentNeolithSlide].texture}')`;
-                    nameEl.textContent = neolithSlides[currentNeolithSlide].name;
-                    
-                    // Fade in
-                    bg.style.opacity = '1';
-                    nameEl.style.opacity = '1';
-                }, 400);
-            }
-            
-            dots.forEach((dot, i) => {
-                dot.style.background = i === currentNeolithSlide ? '#c9a962' : 'rgba(255,255,255,0.4)';
-            });
-        }
-
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', initNeolithSlideshow);
-
-        // AtlasPlan Card Slideshow - Crossfade
-        const atlasplanSlides = [
-            { name: 'Black Tempest', texture: 'assets/atlasplan-black_tempest_texture.jpg' },
-            { name: 'Calacatta Viola', texture: 'assets/atlasplan-calacatta_viola_texture.jpg' },
-            { name: 'Desert Soul', texture: 'assets/atlasplan-desertsoul_texture.jpg' },
-            { name: 'Noce Canaletto', texture: 'assets/atlasplan-noce-canaletto_texture.jpg' }
-        ];
-        let currentAtlasplanSlide = 0;
-
-        function initAtlasplanSlideshow() {
-            const dotsContainer = document.getElementById('atlasplanDots');
-            if (!dotsContainer) return;
-            
-            atlasplanSlides.forEach((_, i) => {
-                const dot = document.createElement('div');
-                dot.style.cssText = `width: 8px; height: 8px; border-radius: 50%; background: ${i === 0 ? '#c9a962' : 'rgba(255,255,255,0.4)'}; transition: background 0.3s; cursor: pointer;`;
-                dot.onclick = (e) => { e.stopPropagation(); goToAtlasplanSlide(i); };
-                dotsContainer.appendChild(dot);
-            });
-            
-            setInterval(() => {
-                currentAtlasplanSlide = (currentAtlasplanSlide + 1) % atlasplanSlides.length;
-                updateAtlasplanSlide();
-            }, 5000);
-        }
-
-        function goToAtlasplanSlide(index) {
-            currentAtlasplanSlide = index;
-            updateAtlasplanSlide();
-        }
-
-        function updateAtlasplanSlide() {
-            const bg = document.getElementById('atlasplanBg');
-            const nameEl = document.getElementById('atlasplanModelName');
-            const dots = document.querySelectorAll('#atlasplanDots > div');
-            
-            if (bg && nameEl) {
-                bg.style.opacity = '0';
-                nameEl.style.opacity = '0';
-                
-                setTimeout(() => {
-                    bg.style.backgroundImage = `url('${atlasplanSlides[currentAtlasplanSlide].texture}')`;
-                    nameEl.textContent = atlasplanSlides[currentAtlasplanSlide].name;
-                    bg.style.opacity = '1';
-                    nameEl.style.opacity = '1';
-                }, 400);
-            }
-            
-            dots.forEach((dot, i) => {
-                dot.style.background = i === currentAtlasplanSlide ? '#c9a962' : 'rgba(255,255,255,0.4)';
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', initAtlasplanSlideshow);
-
-        // Silestone Card Slideshow - Crossfade
-        const silestoneSlides = [
-            { name: 'Pietra', texture: 'assets/silestone-pietra_texture.jpg' },
-            { name: 'Et Marquina', texture: 'assets/silestone-et_marquina_texture.jpg' }
-        ];
-        let currentSilestoneSlide = 0;
-
-        function initSilestoneSlideshow() {
-            const dotsContainer = document.getElementById('silestoneDots');
-            if (!dotsContainer) return;
-            
-            silestoneSlides.forEach((_, i) => {
-                const dot = document.createElement('div');
-                dot.style.cssText = `width: 8px; height: 8px; border-radius: 50%; background: ${i === 0 ? '#c9a962' : 'rgba(255,255,255,0.4)'}; transition: background 0.3s; cursor: pointer;`;
-                dot.onclick = (e) => { e.stopPropagation(); goToSilestoneSlide(i); };
-                dotsContainer.appendChild(dot);
-            });
-            
-            setInterval(() => {
-                currentSilestoneSlide = (currentSilestoneSlide + 1) % silestoneSlides.length;
-                updateSilestoneSlide();
-            }, 4500);
-        }
-
-        function goToSilestoneSlide(index) {
-            currentSilestoneSlide = index;
-            updateSilestoneSlide();
-        }
-
-        function updateSilestoneSlide() {
-            const bg = document.getElementById('silestoneBg');
-            const nameEl = document.getElementById('silestoneModelName');
-            const dots = document.querySelectorAll('#silestoneDots > div');
-            
-            if (bg && nameEl) {
-                bg.style.opacity = '0';
-                nameEl.style.opacity = '0';
-                
-                setTimeout(() => {
-                    bg.style.backgroundImage = `url('${silestoneSlides[currentSilestoneSlide].texture}')`;
-                    nameEl.textContent = silestoneSlides[currentSilestoneSlide].name;
-                    bg.style.opacity = '1';
-                    nameEl.style.opacity = '1';
-                }, 400);
-            }
-            
-            dots.forEach((dot, i) => {
-                dot.style.background = i === currentSilestoneSlide ? '#c9a962' : 'rgba(255,255,255,0.4)';
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', initSilestoneSlideshow);
 
         // Material Modal Functions - defined first so onclick can use them
         
